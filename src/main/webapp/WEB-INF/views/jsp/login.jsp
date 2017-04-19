@@ -142,8 +142,8 @@
 </head>
 <body>
 
-<c:set var="message" scope="session" value="${request.message}"/>
-<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
+<c:set var="message" scope="session" value="${sessionScope.message}"/>
+<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
             <!-- Begin Page Content -->
             <div id="container">
 <c:if test="${ message != null && fn:contains(message, 'Wrong') }">

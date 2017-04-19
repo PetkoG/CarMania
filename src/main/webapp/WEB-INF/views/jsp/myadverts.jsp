@@ -42,30 +42,30 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 </style>
 </head>
 <body>
-<c:set var="message" scope="session" value="${request.message }"/>
+<c:set var="message" scope="session" value="${sessionScope.message }"/>
 
 
 <c:if test="${sessionScope.username == null}">
 
 	<c:set var="message" scope="session" value="Not logged in, please log in!"/>
 
-<c:redirect url="http://localhost:8080/CarMania/login.jsp" />
+<c:redirect url="login" />
 
 </c:if>
 
 
-	<c:if test="${requestScope.myAdverts.isEmpty()}">
-	<br><br><h2 align="center">You have no adverts yet! to create, <a href="addAdvert.jsp">click here</a></h2>
+	<c:if test="${sessionScope.myAdverts.isEmpty()}">
+	<br><br><h2 align="center">You have no adverts yet! to create, <a href="addAdvert">click here</a></h2>
 </c:if>
 
 
 
 
 
-<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
+<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
 <h1 align="center">My adverts</h1>
 
-<c:forEach var="advert" items="${requestScope.myAdverts}">
+<c:forEach var="advert" items="${sessionScope.myAdverts}">
 	<div class="adv" align="center">
 		<h2 align="center"><a href="advert?id=${advert.id}"><c:out value="${advert.title}"/> </a></h2>
 		<p align="center"><b><c:out value="${advert.mark}"/> <c:out value="${advert.model}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: <c:out value="${advert.price}"/> </b><br>

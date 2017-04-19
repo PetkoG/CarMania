@@ -122,16 +122,16 @@ function populateModel(){
 
 	<c:set var="message" scope="session" value="Not logged in, please log in!" />
 
-<c:redirect url="http://localhost:8080/CarMania/login.jsp" />
+<c:redirect url="index" />
 </c:if>
 
-	<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA"
+	<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA"
 		style="width: 128px; height: 128px;"></a>
 	<form action="profile" method="get">
 		<button type="submit" class="back">Back to profile</button>
 	</form>
 	<h2>Create your advert</h2>
-<c:set var="message" scope="session" value="${request.message }"/>
+<c:set var="message" scope="session" value="${sessionScope.message }"/>
 <c:if test="${(message != null) }">
 <c:out value="${message}"/>
 </c:if>

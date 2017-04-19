@@ -24,11 +24,14 @@ width: full;
 </style>
 </head>
 <body>
-<c:set var="message" scope="session" value="${request.message}"/>
-<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
+<c:set var="message" scope="session" value="${sessionScope.message}"/>
+<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
 
 <form action="register" method="post">
   <fieldset>
+  <b><c:if test="${(message != null && fn:contains(message, 'Successful'))}">
+<c:out value="${ message }"></c:out></b>
+</c:if>
      <h2>Registration</h2> 
       <b><c:if test="${(message != null && fn:contains(message, 'taken'))}">
 <c:out value="${ message }"></c:out></b>
