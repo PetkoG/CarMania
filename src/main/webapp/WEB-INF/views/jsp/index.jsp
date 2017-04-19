@@ -32,15 +32,6 @@
 			statusChangeCallback(response);
 		});
 	}
-	function logIn() {
-		$.ajax({
-			url : 'login',
-			type : 'GET',
-			success : function(result) {
-				document.getElementById("result").value = result;
-			}
-		});
-	}
 	function statusChangeCallback(response) {
 		console.log('statusChangeCallback');
 		console.log(response);
@@ -51,7 +42,6 @@
 			}, function(response) {
 				document.getElementById('id').value = "Hello, "
 						+ response.first_name + ' ' + response.last_name + ',';
-				logIn();
 				$.get("register", {
 					first_name : response.first_name,
 					last_name : response.last_name,
@@ -232,7 +222,7 @@ div, textarea, table, td, th, code, pre, samp {
 		<div class="left w50">
 
 			<c:if
-				test="${sessionScope.username == null && sessionScope.logged==null}">
+				test="${sessionScope.username == null}">
 
 				<form action="log" method="post">
 					<p align="right">
@@ -258,7 +248,7 @@ div, textarea, table, td, th, code, pre, samp {
 				</p>
 			</c:if>
 			<c:if
-				test="${sessionScope.logged!=null || sessionScope.username!=null}">
+				test="${sessionScope.username!=null}">
 
 				<form action="profile" method="post">
 					<p align="right">
@@ -277,7 +267,7 @@ div, textarea, table, td, th, code, pre, samp {
 
 			<h2>Choose Your vehicle</h2>
 			<div class="mainDiv">
-				<form action="search" method="post">
+				<form action="search" method="get">
 					Choose category: <select id="category" name="category"
 						onchange="populateMark(this.id,'mark');populateBodyType(this.id,'bodyType')">
 					</select>

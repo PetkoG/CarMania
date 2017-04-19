@@ -40,34 +40,34 @@ width: full;
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>
-<c:out value="${requestScope.advert.title}"/>
+<c:out value="${sessionScope.advert.title}"/>
 </title>
 </head>
 <body>
 <a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
 <div id="content" class="main">
 	<div class="left w50">
-		<h1 align="center"><c:out value="${requestScope.advert.title}"/></h1>
+		<h1 align="center"><c:out value="${sessionScope.advert.title}"/></h1>
 		<div class="left w50" align="center">
-			<h3 align="center"><c:out value="${requestScope.advert.mark}"/> <c:out value="${requestScope.advert.model}"/></h3>
-			Category: <b> <c:out value="${requestScope.advert.category}"/></b><br>
-			Year: <b> <c:out value="${requestScope.advert.year}"/> </b><br>
-			Mileage: <b><c:out value="${requestScope.advert.mileage}"/></b><br>
-			Transmission type: <b><c:out value="${requestScope.advert.transmissionType}"/></b><br>
+			<h3 align="center"><c:out value="${sessionScope.advert.mark}"/> <c:out value="${sessionScope.advert.model}"/></h3>
+			Category: <b> <c:out value="${sessionScope.advert.category}"/></b><br>
+			Year: <b> <c:out value="${sessionScope.advert.year}"/> </b><br>
+			Mileage: <b><c:out value="${sessionScope.advert.mileage}"/></b><br>
+			Transmission type: <b><c:out value="${sessionScope.advert.transmissionType}"/></b><br>
 		</div>
 		<div class="left w50">
-			<h3>Price: <c:out value="${requestScope.advert.price}"/> bgn</h3>
-			Body type: <b> <c:out value="${requestScope.advert.bodyType}"/> </b><br>
-			Horse power: <b><c:out value="${requestScope.advert.horsePower}"/></b><br>
-			Fuel type: <b> <c:out value="${requestScope.advert.fuelType}"/> </b><br>
-			Color: <b> <c:out value="${requestScope.advert.color}"/> </b><br>
+			<h3>Price: <c:out value="${sessionScope.advert.price}"/> bgn</h3>
+			Body type: <b> <c:out value="${sessionScope.advert.bodyType}"/> </b><br>
+			Horse power: <b><c:out value="${sessionScope.advert.horsePower}"/></b><br>
+			Fuel type: <b> <c:out value="${sessionScope.advert.fuelType}"/> </b><br>
+			Color: <b> <c:out value="${sessionScope.advert.color}"/> </b><br>
 		</div>
 	</div>
 	<div class="left w50">
 		<h1 align="center"></h1>
 		<div class="left w50">
 			<h2>For Contact</h2>
-<c:set var="user" scope="session" value="${requestScope.user}"/>
+<c:set var="user" scope="session" value="${sessionScope.user}"/>
 			
 			<b>User: </b><c:out value="${user.username}"/> <br>
 			<b>Email: </b><c:out value="${user.email}"/><br>
@@ -82,7 +82,7 @@ width: full;
 
 
 		<h3>to add comments, please log in first!</h3>
-			<form action="login.jsp" method="get">
+			<form action="log" method="post">
 			<input type="submit" value="login">
 			</form>
 </c:if>

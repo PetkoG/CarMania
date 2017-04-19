@@ -53,15 +53,15 @@ width: 50%;
 </head>
 <body>
 
-<c:set var="message" scope="session" value="${request.message }"/>
+<c:set var="message" scope="session" value="${sessionScope.message }"/>
 
 <c:if test="${sessionScope.username == null}">
 
 	<c:set var="message" scope="session" value="Not logged in, please log in!"/>
 
-<c:redirect url="http://localhost:8080/CarMania/login.jsp" />
+<c:redirect url="login" />
 </c:if>
-<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
+<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
 <div align="center">
 
 <c:if test="${(message != null) }">
@@ -74,15 +74,15 @@ width: 50%;
 <b>Age:</b>&emsp;${age}<br>
 <b>Phone numbers:</b><br> 
 
-<c:forEach var="phone" items="${requestScope.phoneNumbers}">
+<c:forEach var="phone" items="${sessionScope.phoneNumbers}">
 	<c:out value="${phone}"/> <br>
 </c:forEach>
 <table>
 <tr>
-<th><form action="myadverts" method="post">
+<th><form action="myAdverts" method="get">
 	<button type="submit" class="input">My Adverts</button>
 </form></th>
-<th><form action="addAdvert.jsp" method="post">
+<th><form action="addAdvert" method="get">
 	<button type="submit" class="input">Add Advert</button>
 </form></th>
 </tr>

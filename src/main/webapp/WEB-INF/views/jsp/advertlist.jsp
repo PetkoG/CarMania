@@ -30,7 +30,7 @@ font-size:115%;
 
 
 
-	<c:if test="${requestScope.matched==null || requestScope.matched.isEmpty()}">
+	<c:if test="${sessionScope.matched==null || sessionScope.matched.isEmpty()}">
 
 
 
@@ -38,7 +38,7 @@ font-size:115%;
 
 </c:if>
 
-<c:forEach var="advert" items="${requestScope.matched}">
+<c:forEach var="advert" items="${sessionScope.matched}">
 	<div class="adv" align="center">
 	<h2 align="center"><a href="advert?id=${advert.id}"><c:out value="${advert.title}"/> </a></h2>
 		<p align="center"><b><c:out value="${advert.mark}"/> <c:out value="${advert.model}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: <c:out value="${advert.price}"/> </b><br>
@@ -48,7 +48,7 @@ font-size:115%;
 </c:forEach>
 <div align="center" class="page">
 Page:
-<c:set var="pg" scope="session" value="${requestScope.maxPages }"/>
+<c:set var="pg" scope="session" value="${sessionScope.maxPages }"/>
 <c:forEach var="i" begin="1" end="${pg}">
    <a href="searchpage?page=<c:out value="${i}"/>"><c:out value="${i}"/></a>
 </c:forEach>
