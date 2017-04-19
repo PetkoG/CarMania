@@ -6,13 +6,14 @@ import java.util.HashMap;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+
+import org.springframework.stereotype.Component;
 
 import com.DAO.AdvertDAO;
 import com.DAO.PopulateDAO;
 
 
-@WebListener
+@Component
 public class PopulateListener implements ServletContextListener {
 	private static Thread cleaner = new Thread(new Runnable() {
 		@Override
