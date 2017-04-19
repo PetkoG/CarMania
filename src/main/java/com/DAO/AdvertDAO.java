@@ -14,8 +14,6 @@ import com.model.SearchParams;
 
 public class AdvertDAO {
 
-	public static ArrayList<Advert> allAdverts = new ArrayList<Advert>();
-	
 	public synchronized static void addAdvert(Advert advert) throws SQLException {
 		
 		String sql = "INSERT INTO adverts(mark, model, price, category, year, hp, mileage, color, user_id_fk, title,"
@@ -41,7 +39,6 @@ public class AdvertDAO {
 		ps.setString(13, advert.getTransmissionType());
 		ps.setString(14, advert.getFuelType());
 		ps.setString(15, advert.getBodyType());
-		allAdverts.add(advert);
 		try{
 			ps.execute();
 		}
@@ -52,48 +49,16 @@ public class AdvertDAO {
 		}
 		
 	}
-	public static ArrayList<Advert> getAllAdverts() throws SQLException {
-		ArrayList<Advert> adverts = new ArrayList<>();
-		String sql = "SELECT advert_id, marks.mark, models.model, price, categories.category, year, hp, mileage, color,"
-				+ " user_id_fk, title, description, creation, transmission, fuel, bodytypes.bodytype FROM"
-				+ " adverts JOIN categories ON adverts.category = categories.category_id JOIN bodytypes ON"
-				+ " adverts.bodytype = bodytypes.bodytype_id JOIN marks ON adverts.mark = marks.mark_id JOIN"
-				+ " models ON adverts.model = models.model_id";
+	
+	public static void cleanOldAdverts() throws SQLException{
+		String sql = "DELETE FROM adverts WHERE creation < NOW()- INTERVAL 30 DAY";
 		Connection con = DBManager.getInstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
-		ResultSet rs = null;
-		try{
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				int id = rs.getInt("advert_id");
-				String mark = rs.getString("mark");
-				String model = rs.getString("model");
-				int price = rs.getInt("price");
-				System.out.println(price);
-				String category = rs.getString("category");
-				int year = rs.getInt("year");
-				int hp = rs.getInt("hp");
-				int mileage = rs.getInt("mileage");
-				String color = rs.getString("color");
-				int userId = rs.getInt("user_id_fk");
-				String title = rs.getString("title");
-				String description = rs.getString("description");
-				LocalDate date = rs.getDate("creation").toLocalDate();
-				String transmission = rs.getString("transmission");
-				String fuel = rs.getString("fuel");
-				String bodyType = rs.getString("bodytype");
-	
-				Advert advert = new Advert(mark, model, price, category, year, hp, mileage, color, userId, title,
-						description, date, transmission, fuel, bodyType);
-				advert.setId(id);
-				
-				adverts.add(advert);
-			}
-		} finally{
+		try {
+			ps.execute();
+		} finally {
 			if (ps != null) ps.close();
-			if (rs != null) rs.close();
 		}
-		return adverts;
 	}
 
 	public static ArrayList<Advert> getMatchedAdverts(SearchParams params) throws SQLException {
