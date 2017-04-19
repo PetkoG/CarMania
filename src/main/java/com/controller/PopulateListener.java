@@ -4,17 +4,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ServletContextAware;
 
 import com.DAO.AdvertDAO;
 import com.DAO.PopulateDAO;
 
 
 @Component
-public class PopulateListener implements ServletContextListener {
+public class PopulateListener implements ServletContextAware{
 	private static Thread cleaner = new Thread(new Runnable() {
 		@Override
 		public void run() {
@@ -32,7 +34,9 @@ public class PopulateListener implements ServletContextListener {
 			}
 		}
 	});
-    public void contextInitialized(ServletContextEvent event)  {
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
     	HashMap<String, HashMap<String, ArrayList<String>>> catMarkModel = null;
     	HashMap<String, ArrayList<String>> catBody = null;
 		try {
@@ -42,15 +46,11 @@ public class PopulateListener implements ServletContextListener {
 			System.out.println("Problem in context Initialized in PopulateListener. Exception: MysqlException");
 		}
     	 
-    	event.getServletContext().setAttribute("catMarkModel", catMarkModel);
-    	event.getServletContext().setAttribute("catBody", catBody);
+    	servletContext.setAttribute("catMarkModel", catMarkModel);
+    	servletContext.setAttribute("catBody", catBody);
     	
     	cleaner.setDaemon(true);
     	cleaner.start();
-    }
-	
-    public void contextDestroyed(ServletContextEvent event)  { 
-    	
-    }
+	}
 	
 }
