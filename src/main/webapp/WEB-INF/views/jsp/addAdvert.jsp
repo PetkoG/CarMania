@@ -146,8 +146,8 @@ function populateModel(){
 		Choose Car mark: <select id="mark" name="mark" onchange="populateModel(this.id,'model')">
 
 		</select>&emsp;&emsp;&emsp; Choose Car model: <select id="model" name="model"></select>&emsp;&emsp;&emsp;
-		Choose body type: <select id="bodyType" name="body"></select>&emsp;&emsp;
-		Choose transmission: <select name="transtype">
+		Choose body type: <select id="bodyType" name="bodyType"></select>&emsp;&emsp;
+		Choose transmission: <select name="transmissionType">
 			<option value="manual">Manual</option>
 			<option value="automatic">Automatic</option>
 			<option value="semiautomatic">Semi-Automatic</option>
@@ -258,9 +258,9 @@ function populateModel(){
 		</select>&emsp;&emsp;&emsp;
 
 		<hr />
-		Price:<input type="text" name="price">&emsp;&emsp;&emsp;&emsp;
-		Horse power:<input type="text" name="hp">&emsp;&emsp;&emsp;&emsp;
-		Mileage: <input type="text" name="mileage">&emsp;&emsp;&emsp;
+		Price:<input type="text" name="priceText">&emsp;&emsp;&emsp;&emsp;
+		Horse power:<input type="text" name="hpText">&emsp;&emsp;&emsp;&emsp;
+		Mileage: <input type="text" name="mileageText">&emsp;&emsp;&emsp;
 		<hr />
 		<textarea name="description" rows="4" cols="50"></textarea>
 		<input type="submit" value="CREATE ADVERT">

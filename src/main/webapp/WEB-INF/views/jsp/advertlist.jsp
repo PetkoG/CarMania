@@ -25,7 +25,8 @@ font-size:115%;
 <title>Results</title>
 </head>
 <body>
-<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
+<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA"
+				style="width: 128px; height: 64px;"></a>
 <h1 align="center">Found results</h1>
 
 

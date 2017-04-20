@@ -53,8 +53,6 @@ width: 50%;
 </head>
 <body>
 
-<c:set var="message" scope="session" value="${sessionScope.message }"/>
-
 <c:if test="${sessionScope.username == null}">
 
 	<c:set var="message" scope="session" value="Not logged in, please log in!"/>

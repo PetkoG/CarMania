@@ -25,12 +25,16 @@ public class SearchController {
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public String search(Model viewModel,HttpSession session,
-			@RequestParam String category,@RequestParam String mark,@RequestParam String model,@RequestParam String bodyType,
-			@RequestParam String transmission,@RequestParam String fuelType,@RequestParam String color,@RequestParam String sortBy,
-			@RequestParam Integer maxMileage,@RequestParam Integer yearFrom,@RequestParam Integer yearTo,@RequestParam Integer priceFrom,
-			@RequestParam Integer priceTo,@RequestParam Integer hpFrom,@RequestParam Integer hpTo, @RequestParam Integer page) {
+			@RequestParam(required = false, defaultValue="") String category,@RequestParam(required = false, defaultValue="") String mark,
+			@RequestParam(required = false, defaultValue="")String model,@RequestParam(required = false, defaultValue="") String bodyType,
+			@RequestParam(required = false, defaultValue="") String transType,@RequestParam(required = false, defaultValue="") String fuelType,
+			@RequestParam(required = false, defaultValue="") String color,@RequestParam(required = false, defaultValue="") String sortBy,
+			@RequestParam(required = false, defaultValue="1000000000") Integer maxMileage,@RequestParam(required = false, defaultValue="0") Integer yearFrom,
+			@RequestParam(required = false, defaultValue="5000") Integer yearTo,@RequestParam(required = false, defaultValue="0") Integer priceFrom,
+			@RequestParam(required = false, defaultValue="9999999") Integer priceTo,@RequestParam(required = false, defaultValue="0") Integer hpFrom,
+			@RequestParam(required = false, defaultValue="999999") Integer hpTo, @RequestParam(required = false, defaultValue="1") Integer page) {
 		
-		SearchParams sp = new SearchParams(category, mark, model, bodyType, transmission, fuelType, color, maxMileage,
+		SearchParams sp = new SearchParams(category, mark, model, bodyType, transType, fuelType, color, maxMileage,
 				yearFrom, yearTo, priceFrom, priceTo, hpFrom, hpTo, sortBy, page);
 		try {
 			ArrayList<Advert> matched = AdvertDAO.getMatchedAdverts(sp);
@@ -64,8 +68,9 @@ public class SearchController {
 		}
 		return "advertlist";
 	}
+	
 	@RequestMapping(value="/advert/{id}", method=RequestMethod.GET)
-	public String advert(Model viewModel,HttpSession session,@PathVariable("id")int id) {
+	public String advert(Model viewModel,HttpSession session,@PathVariable("id") int id) {
 	Advert advert;
 	User user;
 	try {
@@ -100,20 +105,39 @@ public class SearchController {
 	public String addAdvert() {
 		return "addAdvert";
 	}
-	@RequestMapping(value="/myAdverts", method=RequestMethod.GET)
-	public String myAdverts() {
-		return "myAdverts";
+	@RequestMapping(value="/myAdverts", method = RequestMethod.GET)
+	public String myAdverts(HttpSession session, Model model){
+		if (session.getAttribute("username") != null){
+			String username = (String) session.getAttribute("username");
+			try {
+				ArrayList<Advert> myAdverts = AdvertDAO.getMyAdverts(username);
+				model.addAttribute("myAdverts", myAdverts);
+				return "myadverts";
+			} catch (SQLException e) {
+				return "error";
+			}
+		}
+		return "login";
 	}
 	
 	@RequestMapping(value="/addAdvert", method=RequestMethod.POST)
 	public String addAdvert(Model viewModel,HttpSession session,
-			@RequestParam String message,@RequestParam String title,
-			@RequestParam String category,@RequestParam String mark,@RequestParam String model,@RequestParam String bodyType,
-			@RequestParam String transmissionType,@RequestParam String fuel,@RequestParam String color,@RequestParam String priceText,
-			@RequestParam String mileageText,@RequestParam Integer year,@RequestParam String hpText,
-			@RequestParam String description) {
+			@RequestParam(required= false) String title,
+			@RequestParam(required= false) String category,
+			@RequestParam(required= false) String mark,
+			@RequestParam(required= false) String model,
+			@RequestParam(required= false) String bodyType,
+			@RequestParam(required= false) String transmissionType,
+			@RequestParam(required= false) String fuel,
+			@RequestParam(required= false) String color,
+			@RequestParam(required= false) String priceText,
+			@RequestParam(required= false) String mileageText,
+			@RequestParam(required= false) Integer year,
+			@RequestParam(required= false) String hpText,
+			@RequestParam(required= false) String description) {
 		String username = ((String)session.getAttribute("username"));
 		int userId=0;
+		String message = null;
 		try {
 			userId = UserDAO.getUserId(username);
 		} catch (SQLException e) {

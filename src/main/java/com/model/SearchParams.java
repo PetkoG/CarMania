@@ -23,13 +23,27 @@ public class SearchParams {
 	public SearchParams(String category, String mark, String model, String bodyType, String transmission,
 			String fuelType, String color, int maxMileage, int yearFrom, int yearTo, int priceFrom, int priceTo,
 			int hpFrom, int hpTo, String sortBy, int page) {
-		this.category = category;
-		this.mark = mark;
-		this.model = model;
-		this.bodyType = bodyType;
-		this.transmission = transmission;
-		this.fuelType = fuelType;
-		this.color = color;
+		if (!category.isEmpty()){
+			this.category = category;
+		}
+		if (!mark.isEmpty()){
+			this.mark = mark;
+		}
+		if (!model.isEmpty()){
+			this.model = model;
+		}
+		if (!bodyType.isEmpty()){
+			this.bodyType = bodyType;
+		}
+		if (!transmission.isEmpty()){
+			this.transmission = transmission;
+		}
+		if (!fuelType.isEmpty()){
+			this.fuelType = fuelType;
+		}
+		if (!color.isEmpty()){
+			this.color = color;
+		}
 		this.maxMileage = maxMileage;
 		this.yearFrom = yearFrom;
 		this.yearTo = yearTo;

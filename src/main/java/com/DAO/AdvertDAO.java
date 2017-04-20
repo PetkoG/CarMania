@@ -79,13 +79,13 @@ public class AdvertDAO {
 		ps.setString(1, params.getMark());
 		ps.setString(2, params.getModel());
 		ps.setInt(3, params.getPriceFrom());
-		ps.setInt(4, params.getPriceTo() < 0 ? 999999 : params.getPriceTo());
+		ps.setInt(4, params.getPriceTo());
 		ps.setString(5, params.getCategory());
 		ps.setInt(6, params.getYearFrom());
-		ps.setInt(7, params.getYearTo() < 0 ? 999999 : params.getYearTo());
+		ps.setInt(7, params.getYearTo());
 		ps.setInt(8, params.getHpFrom());
-		ps.setInt(9, params.getHpTo() < 0 ? 999999 : params.getHpTo());
-		ps.setInt(10, params.getMaxMileage() < 0 ? 9999999 : params.getMaxMileage());
+		ps.setInt(9, params.getHpTo());
+		ps.setInt(10, params.getMaxMileage());
 		ps.setString(11, params.getColor());
 		ps.setString(12, params.getTransmission());
 		ps.setString(13, params.getFuelType());

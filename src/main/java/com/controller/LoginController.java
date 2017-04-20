@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.DAO.UserDAO;
 import com.model.User;
 
-import io.netty.handler.codec.http.HttpResponse;
-
 @Controller
 public class LoginController {
 	
@@ -42,19 +40,18 @@ public class LoginController {
 					return "profile";
 					
 				} catch (SQLException e) {
-					System.out.println("something went shit in profile servlet");
+					System.out.println("something went bad in profile servlet");
 				}
 			}
 			else {
 				System.out.println("username null");
-				return "register";
+				return "login";
 			}
 		}
-			return "register";
-		
-		
-		
+		return "login";
 	}
+	
+	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(Model viewModel,HttpSession session) {
 		//System.out.println("Successful login with facebook");

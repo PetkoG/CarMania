@@ -52,10 +52,10 @@ public class RegisterController {
 			@RequestParam String age) {
 		PasswordValidator pv = new PasswordValidator();
 		String message;
-		if (doesntHaveSpaces(username) && username.length()>=8 && username.length()<100){
+		if (doesntHaveSpaces(username) && username.length()>=5 && username.length()<100){
 			if (email.contains("@") && email.contains(".") && !email.contains(" ")){
 				if ( pv.validate(password) && password.equals(password_confirm)){
-					if (containsOnlyNumbers(phone1) && containsOnlyNumbers(phone2) && containsOnlyNumbers(phone3)){
+					if (notEmpty(phone1) && containsOnlyNumbers(phone1) && containsOnlyNumbers(phone2) && containsOnlyNumbers(phone3)){
 						if (doesntHaveSpaces(age) && containsOnlyNumbers(age)){
 							int newAge = Integer.parseInt(age);
 							User user = new User(username, email, DigestUtils.md5Hex(password).toUpperCase(), newAge);
@@ -130,5 +130,11 @@ public class RegisterController {
 			}
 		}
 		return true;
+	}
+	public static boolean notEmpty (String text){
+		if (text != null && !text.trim().isEmpty()){
+			return true;
+		}
+		return false;
 	}
 }

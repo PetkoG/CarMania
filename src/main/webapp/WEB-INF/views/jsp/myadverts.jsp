@@ -65,9 +65,9 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 <a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
 <h1 align="center">My adverts</h1>
 
-<c:forEach var="advert" items="${sessionScope.myAdverts}">
+<c:forEach var="advert" items="${myAdverts}">
 	<div class="adv" align="center">
-		<h2 align="center"><a href="advert?id=${advert.id}"><c:out value="${advert.title}"/> </a></h2>
+		<h2 align="center"><a href="advert?id=${advert.id}">${advert.title}</a></h2>
 		<p align="center"><b><c:out value="${advert.mark}"/> <c:out value="${advert.model}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: <c:out value="${advert.price}"/> </b><br>
 		<c:out value="${advert.fuelType}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year: <c:out value="${advert.year}"/> 
 		</p>

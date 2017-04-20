@@ -51,6 +51,7 @@ public class PopulateListener implements ServletContextAware{
     	
     	cleaner.setDaemon(true);
     	cleaner.start();
+    	
 	}
 	
 }
