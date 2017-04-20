@@ -136,7 +136,7 @@ function populateModel(){
 <c:out value="${message}"/>
 </c:if>
 	<div class="main">
-	<form action="addAdvert" method="post">
+	<form action="addAdvert" method="post" enctype="multipart/form-data">
 		Title: <input name="title" size="100">
 		<hr />
 		Choose category: <select id="category" name="category" onchange="populateMark(this.id,'mark');populateBodyType(this.id,'bodyType')">
@@ -263,6 +263,7 @@ function populateModel(){
 		Mileage: <input type="text" name="mileageText">&emsp;&emsp;&emsp;
 		<hr />
 		<textarea name="description" rows="4" cols="50"></textarea>
+		<input type="file" id="image" name="image" accept="image/*">
 		<input type="submit" value="CREATE ADVERT">
 
 	</form>

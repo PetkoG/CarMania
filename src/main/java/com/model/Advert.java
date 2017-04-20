@@ -22,12 +22,12 @@ public class Advert {
 	private String transmissionType;
 	private String fuelType;	
 	private String bodyType;
-	
+	private String image;
 	
 
 	public Advert(String mark, String model, int price, String category, int year, int horsePower, int mileage,
 			String color, int userId, String title, String description, LocalDate creationTime,
-			String transmissionType, String fuelType, String bodyType) {
+			String transmissionType, String fuelType, String bodyType, String image) {
 		this.mark = mark;
 		this.model = model;
 		this.price = price;
@@ -42,8 +42,13 @@ public class Advert {
 		this.transmissionType = transmissionType;
 		this.fuelType = fuelType;
 		this.bodyType = bodyType;
+		this.image = image;
 		this.comments = new ArrayList<>();
 		this.creationTime = creationTime;
+	}
+
+	public String getImage() {
+		return image;
 	}
 
 	public String getMark() {

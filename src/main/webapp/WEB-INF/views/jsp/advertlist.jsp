@@ -41,6 +41,7 @@ font-size:115%;
 
 <c:forEach var="advert" items="${sessionScope.matched}">
 	<div class="adv" align="center">
+	<img src="${applicationScope.imagePath}${advert.image}">
 	<h2 align="center"><a href="advert?id=${advert.id}"><c:out value="${advert.title}"/> </a></h2>
 		<p align="center"><b><c:out value="${advert.mark}"/> <c:out value="${advert.model}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: <c:out value="${advert.price}"/> </b><br>
 		<c:out value="${advert.fuelType}"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year: <c:out value="${advert.year}"/> 

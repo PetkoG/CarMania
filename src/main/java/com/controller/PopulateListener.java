@@ -1,16 +1,12 @@
 package com.controller;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
-
 import com.DAO.AdvertDAO;
 import com.DAO.PopulateDAO;
 
@@ -35,17 +31,19 @@ public class PopulateListener implements ServletContextAware{
 		}
 	});
 
+	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"georg"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	@Override
 	public void setServletContext(ServletContext servletContext) {
     	HashMap<String, HashMap<String, ArrayList<String>>> catMarkModel = null;
     	HashMap<String, ArrayList<String>> catBody = null;
+    	
 		try {
 			catMarkModel = PopulateDAO.getInstance().getCatMarkModel();
 			catBody = PopulateDAO.getInstance().getCatBody();
 		} catch (SQLException e) {
 			System.out.println("Problem in context Initialized in PopulateListener. Exception: MysqlException");
 		}
-    	 
+    	servletContext.setAttribute("imagePath", FILE_LOCATION);
     	servletContext.setAttribute("catMarkModel", catMarkModel);
     	servletContext.setAttribute("catBody", catBody);
     	

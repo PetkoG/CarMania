@@ -1,9 +1,14 @@
 package com.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.DAO.AdvertDAO;
 import com.DAO.UserDAO;
@@ -21,25 +28,36 @@ import com.model.SearchParams;
 import com.model.User;
 
 @Controller
+@MultipartConfig
 public class SearchController {
+	private static long imageName = 1;
+	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"georg"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public String search(Model viewModel,HttpSession session,
-			@RequestParam(required = false, defaultValue="") String category,@RequestParam(required = false, defaultValue="") String mark,
-			@RequestParam(required = false, defaultValue="")String model,@RequestParam(required = false, defaultValue="") String bodyType,
-			@RequestParam(required = false, defaultValue="") String transType,@RequestParam(required = false, defaultValue="") String fuelType,
-			@RequestParam(required = false, defaultValue="") String color,@RequestParam(required = false, defaultValue="") String sortBy,
-			@RequestParam(required = false, defaultValue="1000000000") Integer maxMileage,@RequestParam(required = false, defaultValue="0") Integer yearFrom,
-			@RequestParam(required = false, defaultValue="5000") Integer yearTo,@RequestParam(required = false, defaultValue="0") Integer priceFrom,
-			@RequestParam(required = false, defaultValue="9999999") Integer priceTo,@RequestParam(required = false, defaultValue="0") Integer hpFrom,
-			@RequestParam(required = false, defaultValue="999999") Integer hpTo, @RequestParam(required = false, defaultValue="1") Integer page) {
+			@RequestParam(required = false, defaultValue="") String category,
+			@RequestParam(required = false, defaultValue="") String mark,
+			@RequestParam(required = false, defaultValue="")String model,
+			@RequestParam(required = false, defaultValue="") String bodyType,
+			@RequestParam(required = false, defaultValue="") String transType,
+			@RequestParam(required = false, defaultValue="") String fuelType,
+			@RequestParam(required = false, defaultValue="") String color,
+			@RequestParam(required = false, defaultValue="") String sortBy,
+			@RequestParam(required = false, defaultValue="1000000000") Integer maxMileage,
+			@RequestParam(required = false, defaultValue="0") Integer yearFrom,
+			@RequestParam(required = false, defaultValue="5000") Integer yearTo,
+			@RequestParam(required = false, defaultValue="0") Integer priceFrom,
+			@RequestParam(required = false, defaultValue="9999999") Integer priceTo,
+			@RequestParam(required = false, defaultValue="0") Integer hpFrom,
+			@RequestParam(required = false, defaultValue="999999") Integer hpTo,
+			@RequestParam(required = false, defaultValue="1") Integer page) {
 		
 		SearchParams sp = new SearchParams(category, mark, model, bodyType, transType, fuelType, color, maxMileage,
 				yearFrom, yearTo, priceFrom, priceTo, hpFrom, hpTo, sortBy, page);
 		try {
 			ArrayList<Advert> matched = AdvertDAO.getMatchedAdverts(sp);
 			for (Advert adv : matched){
-				System.out.println(adv.getPrice());
+				System.out.println(adv.getImage());
 			}
 			Integer maxPages = AdvertDAO.pageCount(sp);
 			session.setAttribute("searchParams", sp);
@@ -134,7 +152,9 @@ public class SearchController {
 			@RequestParam(required= false) String mileageText,
 			@RequestParam(required= false) Integer year,
 			@RequestParam(required= false) String hpText,
-			@RequestParam(required= false) String description) {
+			@RequestParam(required= false) String description,
+			@RequestParam("image") MultipartFile image) {
+
 		String username = ((String)session.getAttribute("username"));
 		int userId=0;
 		String message = null;
@@ -160,9 +180,17 @@ public class SearchController {
 													int price = Integer.parseInt(priceText);
 													int hp = Integer.parseInt(hpText);
 													int mileage = Integer.parseInt(mileageText);
+													File imageToSave = new File(FILE_LOCATION + imageName+".jpeg");
+													try {
+														Files.copy(image.getInputStream(), imageToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
+													} catch (IOException e1) {
+														System.out.println("STACKTRACE "+ e1.getMessage() );
+														return "error";
+													}
 													Advert add = new Advert(mark, model, price, category, year, hp,
 															mileage, color, userId, title, description, LocalDate.now(),
-															transmissionType, fuel, bodyType);
+															transmissionType, fuel, bodyType, imageName+".jpeg");
+													imageName++;
 													try {
 														AdvertDAO.addAdvert(add);
 														message = "ADVERT ADDED SUCCEFULLY";
