@@ -90,7 +90,6 @@ public class PdfView extends AbstractPdfView {
         	
         	if(ad!=null) {
         	table.addCell(ad.getMark());
-            table.addCell(String.valueOf(ad.getPrice()));
             table.addCell(ad.getModel());
             table.addCell(String.valueOf(ad.getPrice()));
             table.addCell(ad.getCategory());

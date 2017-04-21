@@ -31,7 +31,7 @@ public class PopulateListener implements ServletContextAware{
 		}
 	});
 
-	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"georg"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
+	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"Petko"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	@Override
 	public void setServletContext(ServletContext servletContext) {
     	HashMap<String, HashMap<String, ArrayList<String>>> catMarkModel = null;

@@ -31,7 +31,7 @@ import com.model.User;
 @MultipartConfig
 public class SearchController {
 	private static long imageName = 1;
-	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"georg"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
+	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"Petko"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public String search(Model viewModel,HttpSession session,
@@ -69,8 +69,8 @@ public class SearchController {
 		}
 		return "advertlist";
 	}
-	@RequestMapping(value="/searchpage/{page}", method=RequestMethod.GET)
-	public String searchPage(Model viewModel,HttpSession session,@PathVariable("page")String page) {
+	@RequestMapping(value="/searchpage", method=RequestMethod.GET)
+	public String searchPage(Model viewModel,HttpSession session,@RequestParam String page) {
 		SearchParams sp = (SearchParams) session.getAttribute("searchParams");
 		int newPage = validPage(page);
 		sp.setPage(newPage);
@@ -87,8 +87,8 @@ public class SearchController {
 		return "advertlist";
 	}
 	
-	@RequestMapping(value="/advert/{id}", method=RequestMethod.GET)
-	public String advert(Model viewModel,HttpSession session,@PathVariable("id") int id) {
+	@RequestMapping(value="/advert", method=RequestMethod.GET)
+	public String advert(Model viewModel,HttpSession session,@RequestParam Integer id) {
 	Advert advert;
 	User user;
 	try {

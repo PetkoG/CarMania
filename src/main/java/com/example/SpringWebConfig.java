@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import org.springframework.context.MessageSource;
@@ -7,17 +8,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import com.model.PdfViewResolver;
 
 @Configuration
 @EnableWebMvc
@@ -67,5 +72,30 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		changeInterceptor.setParamName("language");
 		registry.addInterceptor(changeInterceptor);
 	}
+	
+	 /*
+     * Configure ContentNegotiatingViewResolver
+     */
+    @Bean
+    public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
+        ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+        resolver.setContentNegotiationManager(manager);
+
+        // Define all possible view resolvers
+        ArrayList<ViewResolver> resolvers = new ArrayList<>();
+
+        resolvers.add(getInternalResourceViewResolver());
+        resolvers.add(pdfViewResolver());
+
+        resolver.setViewResolvers(resolvers);
+        return resolver;
+    }
+
+    @Bean
+    public ViewResolver pdfViewResolver() {
+        return new PdfViewResolver();
+    }
+
+
 	
 }

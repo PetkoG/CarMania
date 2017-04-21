@@ -44,7 +44,7 @@ width: full;
 </title>
 </head>
 <body>
-<a href="index.jsp"><img src="CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
+<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
 <div id="content" class="main">
 	<div class="left w50">
 		<h1 align="center"><c:out value="${sessionScope.advert.title}"/></h1>
@@ -105,10 +105,8 @@ width: full;
 <br>
 	<br>
 </c:forEach>
-
-			
-				
-			
+	<form action="downloadPdf.pdf">
+	<input type="submit" value="Download This Advert As PDF"></form>
 		</div>
 	</div>
 	
