@@ -18,13 +18,13 @@ import com.model.User;
 @Controller
 public class LoginController {
 	
-	@RequestMapping(value="/log", method=RequestMethod.POST)
+	@RequestMapping(value="/log", method=RequestMethod.GET)
 	public String login(Model viewModel,HttpSession session) {
 		//System.out.println("Successful login with facebook");
 		//session.setAttribute("logged", true);
 		return "login";
 	}
-	@RequestMapping(value="/profile", method=RequestMethod.POST)
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String profile(Model viewModel,HttpSession session) {
 		String username;
 		

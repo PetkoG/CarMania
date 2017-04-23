@@ -3,348 +3,166 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page errorPage="error.jsp"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="http://connect.facebook.net/en_US/all.js#xfbml=1&
-      appId=YOUR_APP_ID"></script>
-<title>Car Mania</title>
-
-<div id="fb-root"></div>
-
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1949657808598458";
-		fjs.parentNode.insertBefore(js, fjs);
-
-	}(document, 'script', 'facebook-jssdk'));
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-	}
-	function statusChangeCallback(response) {
-		console.log('statusChangeCallback');
-		console.log(response);
-
-		if (response.status === 'connected') {
-			FB.api('/me', {
-				fields : 'first_name,last_name,email'
-			}, function(response) {
-				document.getElementById('id').value = "Hello, "
-						+ response.first_name + ' ' + response.last_name + ',';
-				$.get("register", {
-					first_name : response.first_name,
-					last_name : response.last_name,
-					email : response.email,
-				}, function(result) {
-					window.location.href = "index";
-				});
-			});
-
-		} else {
-			// The person is not logged into your app or we are unable to tell.
-			document.getElementById('id').value = 'Please log '
-					+ 'into this app.';
-		}
-	}
-
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId : '1949657808598458',
-			xfbml : true,
-			version : 'v2.8'
-		});
-		FB.AppEvents.logPageView();
-	};
-	FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
+<title>The Auto-Tuning Website Template | Home :: w3layouts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!--slider-->
+<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.gallery.js"></script>
+<script type="text/javascript">
+		$(function() {
+		$('#dg-container').gallery({
+		autoplay	:	true
 	});
+});
 </script>
 
-<script>
-	window.onload = populateCategory;
-	function populateCategory() {
-		var category = [ "" ];
-		var select = document.getElementById("category");
-		select.innerHTML = "";
-		<c:forEach var="category" items="${applicationScope.catMarkModel}">
-		category.push("${category.key}");
-		</c:forEach>
-		var size = category.length;
-
-		for (var i = 0; i < size; i++) {
-			var newOption = document.createElement("option");
-			newOption.value = category[i];
-			newOption.innerHTML = category[i];
-			select.appendChild(newOption);
-		}
-	}
-	function populateMark(category, mark) {
-		var mark = [ "" ];
-		var select = document.getElementById("mark");
-		var category = document.getElementById("category");
-		select.innerHTML = "";
-		<c:forEach var="entry" items="${applicationScope.catMarkModel}">
-		if ("${entry.key}" == category.value) {
-			<c:forEach var="entry1" items="${entry.value}">
-			mark.push("${entry1.key}");
-			</c:forEach>
-		}
-		</c:forEach>
-		var size = mark.length;
-		for (var i = 0; i < size; i++) {
-			var newOption = document.createElement("option");
-			newOption.value = mark[i];
-			newOption.innerHTML = mark[i];
-			select.appendChild(newOption);
-		}
-
-	}
-	function populateBodyType(category, bodyType) {
-		var bodyType = [ "" ];
-		var select = document.getElementById("bodyType");
-		var category = document.getElementById("category");
-		select.innerHTML = "";
-		<c:forEach var="entry" items="${applicationScope.catBody}">
-		if ("${entry.key}" == category.value) {
-			<c:forEach var="entry1" items="${entry.value}">
-			bodyType.push("${entry1}");
-			</c:forEach>
-		}
-		</c:forEach>
-		var size = bodyType.length;
-		for (var i = 0; i < size; i++) {
-			var newOption = document.createElement("option");
-			newOption.value = bodyType[i];
-			newOption.innerHTML = bodyType[i];
-			select.appendChild(newOption);
-		}
-	}
-	function populateModel() {
-		var model = [ "" ];
-		var mark = document.getElementById("mark");
-		var category = document.getElementById("category");
-		var select = document.getElementById("model");
-		select.innerHTML = "";
-		<c:forEach var="entry" items="${applicationScope.catMarkModel}">
-		if ("${entry.key}" == category.value) {
-			<c:forEach var="entry1" items="${entry.value}">
-			if ("${entry1.key}" == mark.value) {
-				<c:forEach var="entry2" items="${entry1.value}">
-				model.push("${entry2}");
-				</c:forEach>
-			}
-			</c:forEach>
-		}
-		</c:forEach>
-		var size = model.length;
-		for (var i = 0; i < size; i++) {
-			var newOption = document.createElement("option");
-			newOption.value = model[i];
-			newOption.innerHTML = model[i];
-			select.appendChild(newOption);
-		}
-
-	}
-</script>
-<style>
-html {
-	font-size: 62.5%;
-}
-
-.mainDiv {
-	background-color: PowderBlue;
-	box-shadow: 5px 5px 5px #888888;
-	width: 1000px;
-	height: 240px;
-	border: 1px solid blue;
-	box-sizing: border-box;
-	padding: 15px 30px;
-	border-radius: 25px;
-}
-
-body {
-	background-color: White;
-	color: black;
-	font-family: helvetica, arial, sans-serif;
-	font-size: 1.4em; /* equiv 14px */
-	line-height: 1.5; /* adapt to your design */
-}
-/* you shall not pass */
-div, textarea, table, td, th, code, pre, samp {
-	word-wrap: break-word;
-}
-
-.left {
-	float: left;
-}
-
-.w50 {
-	width: 50%;
-}
-
-.input {
-	padding: 10px 20px 11px !important;
-	font-size: 21px !important;
-	background-color: DeepSkyBlue;
-	font-weight: bold;
-	text-shadow: 1px 1px red;
-	color: black;
-	border-radius: 100px;
-	-moz-border-radius: 100px;
-	-webkit-border-radius: 100px;
-	border: 1px solid #F36C8C;
-	cursor: pointer;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-}
-</style>
 </head>
 <body>
-	<div id="demo"></div>
-
-	<div>
-		<div class="left w50">
-			<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA"
-				style="width: 128px; height: 64px;"></a>
+<div class="wrap">
+<div class="header">
+	<div class="logo">
+		<h1><a href="index"><img src="img/logo.png" alt=""></a></h1>
+	</div>
+	<div class="h_right">
+	<div class="drp-dwn">
+		<ul>
+			<li><h3>Select ur Language :</h3></li>
+			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+				<option value="">English</option>
+				<option value="">German</option>
+				<option value="">French</option>
+			</select></li>
+			<li><h3 style="margin-left: 10px;">Currency :</h3></li>
+			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+				<option value="">US Dollar-USD</option>
+				<option value="">Euro-EUR</option>
+				<option value="">Indian Rupee-INR</option>
+			</select></li>
+		</ul>
+	</div>
+	<div class="header_top_right">
+	   <div class="login">
+			   	   <span><a href="/MyProject/log"><img src="img/login.png" alt="" title="login"></a></span>
+			   </div>
+			   			    <div class="shopping_cart">
+				    		<div class="cart_img" style="visibility: hidden;">
+				    	
+				    	</div>
+						<div class="cart">
+							<a href="profile" title="View my shopping cart" rel="nofollow">
+									<span class="cart_title">Profile<span class="no_product">(${sessionScope.username })</span></span>
+								</a>
+						</div>
+				     </div>
+			 <div class="clear"></div>
+		 </div>
+	</div>
+	<div class="clear"></div>
+	<div class="h_main">
+		<ul class="nav">
+	        <li class="active"><a href="index">Home</a></li>
+	        <li><a href="maintain.html">Search</a></li>
+	        <li><a href="repair.html">Categories</a></li>
+	        <li><a href="contact.html">More</a></li>
+	     </ul>
+	     <div class="search">
+	    	<form>
+	    		<input type="text" value="">
+	    		<input type="submit" value="">
+	    	</form>
 		</div>
-		<div class="left w50">
-
-			<c:if
-				test="${sessionScope.username == null}">
-
-				<form action="log" method="post">
-					<p align="right">
-						<button type="submit">LOGIN</button>
-					</p>
-				</form>
-				<form action="reg" method="get">
-					<p align="right">
-						<button type="submit">Register</button>
-					</p>
-				</form>
-				<p align="right">
-					<fb:login-button scope="public_profile,email"
-						perms="user_address,user_mobile_phone"
-						onlogin="checkLoginState();" onclick="displayProfile();">
-					</fb:login-button>
-				</p>
-				<p align="right">
-					<input style="border: none" size="15" id="id"></input>
-				</p>
-				<p align="right">
-					<input style="border: none" size="25" id="result"></input>
-				</p>
-			</c:if>
-			<c:if
-				test="${sessionScope.username!=null}">
-
-				<form action="profile" method="post">
-					<p align="right">
-						<button type="submit">PROFILE</button>
-					</p>
-				</form>
-				<form action="logout" method="get">
-					<p align="right">
-						<button type="submit">LOGOUT</button>
-					</p>
-				</form>
-			</c:if>
-
+	<div class="clear"></div>
+	</div>
+</div>
+<div class="container">
+	<section id="dg-container" class="dg-container">
+			<div class="dg-wrapper" id="gallery">
+			<c:forEach var="i" begin="1" end="5">
+  				
+			</c:forEach>
+					<a href="#"><img src="img/Ceca.jpeg" alt="image1" height="360" width="480"/></a>
+					<a href="#"><img src="img/CarManiaLogo.jpg" alt="image2" height="360" width="480"/></a>
+					<a href="#"><img src="file:\\C:\Users\Petko\Desktop\CarManiaImages\1.jpeg" alt="image3" /></a>
+					<a href="#"><img src="images/4.jpg" alt="image4" /></a>
+					<a href="#"><img src="images/5.jpg" alt="image5" /></a>
+					<a href="#"><img src="images/6.jpg" alt="image1" /></a>
+					<a href="#"><img src="images/7.jpg" alt="image2" /></a>
+					<a href="#"><img src="images/8.jpg" alt="image3" /></a>
+			</div>
+	</section>
+</div>
+<div class="main">
+	<div class="section group">
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic1.jpg"></a>
+			   <a href="details.html"><h3>Lorem Ipsum is</h3></a>
 		</div>
-		<div>
-
-			<h2>Choose Your vehicle</h2>
-			<div class="mainDiv">
-				<form action="search" method="get">
-					Choose category: <select id="category" name="category"
-						onchange="populateMark(this.id,'mark');populateBodyType(this.id,'bodyType')">
-					</select>
-					<hr />
-					Choose Car mark: <select id="mark" name="mark"
-						onchange="populateModel()">
-
-					</select>&emsp;&emsp;&emsp; Choose Car model: <select id="model"
-						name="model"></select>&emsp;&emsp;&emsp; Choose body type: <select
-						id="bodyType" name="bodyType"></select>&emsp;&emsp; Choose
-					transmission: <select name="transType">
-						<option value=""></option>
-						<option value="manual">Manual</option>
-						<option value="automatic">Automatic</option>
-						<option value="semiautomatic">Semi-Automatic</option>
-					</select>
-					<hr />
-					year of manufacture: <select name="yearFrom">
-						<option value=""></option>
-						<option value="1980">from 1980</option>
-						<option value="1990">from 1990</option>
-						<option value="2000">from 2000</option>
-						<option value="2010">from 2010</option>
-					</select> <select name="yearTo">
-						<option value=""></option>
-						<option value="1980">to 1980</option>
-						<option value="1990">to 1990</option>
-						<option value="2000">to 2000</option>
-						<option value="2010">to 2010</option>
-						<option value="2017">to 2017</option>
-					</select>&emsp;&emsp;&emsp; Engine type: <select name="fuelType">
-						<option value=""></option>
-						<option value="petrol">Petrol</option>
-						<option value="diesel">Diesel</option>
-						<option value="electric">Electric</option>
-						<option value="hybrid">Hybrid</option>
-					</select>&emsp;&emsp;&emsp; Color: <select name="color">
-						<option value=""></option>
-						<option value="white">white</option>
-						<option value="red">red</option>
-						<option value="blue">blue</option>
-						<option value="black">black</option>
-						<option value="rainbow">rainbow</option>
-					</select>&emsp;&emsp;&emsp;
-
-					<hr />
-					Price:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-					&emsp;&emsp;&emsp; Horse power:<br> from <input type="text"
-						name="priceFrom"> to <input type="text" name="priceTo">&emsp;|&emsp;
-					from <input type="text" name="hpFrom"> to <input
-						type="text" name="hpTo">
-					<hr />
-					Max mileage: <select name="maxMileage">
-						<option value=""></option>
-						<option value="10000">to 10000</option>
-						<option value="20000">to 20000</option>
-						<option value="30000">to 30000</option>
-						<option value="40000">to 40000</option>
-						<option value="50000">to 50000</option>
-						<option value="100000">to 100000</option>
-						<option value="120000">to 120000</option>
-						<option value="140000">to 140000</option>
-						<option value="160000">to 160000</option>
-						<option value="180000">to 180000</option>
-						<option value="200000">to 200000</option>
-					</select>&emsp;&emsp;&emsp; Sort by: <select name="sortBy">
-						<option value="mark">Mark</option>
-						<option value="price">price</option>
-						<option value="mileage">mileage</option>
-						<option value="year">date of manufacture</option>
-						<option value="creation">Newest adverts</option>
-					</select>&emsp;&emsp;&emsp; <input type="hidden" value="1" name="page">
-					<input type="submit" class="input" value="SEARCH">
-
-				</form>
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic3.jpg"></a>
+			  <a href="details.html"><h3>Lorem is simply </h3></a>
+		</div>
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src=".pic2.jpg"></a>
+			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
+		</div>
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic4.jpg"></a>
+			  <a href="details.html"><h3>Lorem is simply </h3></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="section group btm">
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic5.jpg"></a>
+			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
+		</div>
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic6.jpg"></a>
+			  <a href="details.html"><h3>Lorem is simply </h3></a>
+		</div>
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic7.jpg"></a>
+			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
+		</div>
+		<div class="grid_1_of_4 images_1_of_4">
+			  <a href="details.html"><img src="images/pic8.jpg"></a>
+			  <a href="details.html"><h3>Lorem is simply </h3></a>
+		</div>
+			<div class="clear"></div>
+		</div>
+</div>
+<div class="footer">
+	<div class="f_left">
+		<div class="f_nav">
+			<ul>
+		        <li><a href="">Home</a></li>
+				<li><a href="">Search</a></li>
+				<li><a href="">Categories</a></li>
+				<li><a href="">More</a></li>
+		     </ul>
+		</div>
+		<div class="copy">
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
 			</div>
 		</div>
-	</div>
+	<div class="social-icons">
+	   		  	<ul>	
+	 			  <li class="icon1"><a href="#" target="_blank"> </a></li>
+			      <li class="icon2"><a href="#" target="_blank"> </a></li>
+			      <li class="icon3"><a href="#" target="_blank"> </a></li>
+			      <li class="icon4"><a href="#" target="_blank"> </a></li>	
+			      <div class="clear"></div>
+		     </ul>
+	 </div>
+	 <div class="clear"></div>
+</div>
+</div>
 </body>
 </html>

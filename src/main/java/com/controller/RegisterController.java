@@ -25,18 +25,28 @@ public class RegisterController {
 	public String fbRegister(Model viewModel,HttpSession session,@RequestParam String last_name,
 			@RequestParam String first_name,@RequestParam String email) {
 		
-		// if(UserDAO.getAllUsers().contains(email) {  
-		// } else {
-		int randomId=new Random().nextInt(10000);
-		String user = first_name.concat(last_name) + randomId;
-		String pass = first_name.concat(last_name) + randomId;
-		SendEmail.sendEmail(email, first_name+" "+last_name, pass,user);
-		User u = new User(user, pass, email);
-		// UserDAO.addUser(u);
-		System.out.println("sent register email to " + email);
-		session.setAttribute("email", email);
-		session.setAttribute("username", user);
-		return "index";
+		String newUser = null;
+		try {
+			newUser = UserDAO.getUserByEmail(email);
+		} catch (SQLException e) {
+			System.out.println("Could not fetch user by email");
+		}
+		if(newUser!=null) {  
+			session.setAttribute("username", newUser);
+			return "index";
+		}
+			else {
+			int randomId=new Random().nextInt(10000);
+			String user = first_name.concat(last_name) + randomId;
+			String pass = first_name.concat(last_name) + randomId;
+			SendEmail.sendEmail(email, first_name+" "+last_name, pass,user);
+			User u = new User(user, pass, email);
+			// UserDAO.addUser(u);
+			System.out.println("sent register email to " + email);
+			session.setAttribute("email", email);
+			session.setAttribute("username", user);
+			return "index";
+		 }
 	}
 	
 	@RequestMapping(value="/reg", method=RequestMethod.GET)

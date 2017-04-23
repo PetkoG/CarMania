@@ -1,169 +1,196 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page errorPage="error.jsp"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>LOGIN</title>
+<title>The Auto-Tuning Website Template | 404 :: w3layouts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="http://connect.facebook.net/en_US/all.js#xfbml=1&
+      appId=YOUR_APP_ID"></script>
+<script>
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id))
+			return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1949657808598458";
+		fjs.parentNode.insertBefore(js, fjs);
 
-        <style>
-        /* Basics */
-        html, body {
-            width: 100%;
-            height: 100%;
-            font-family: "Helvetica Neue", Helvetica, sans-serif;
-            color: #444;
-            -webkit-font-smoothing: antialiased;
-            background: #f0f0f0;
-        }
-        #container {
-            position: fixed;
-            width: 340px;
-            height: 280px;
-            top: 50%;
-            left: 50%;
-            margin-top: -140px;
-            margin-left: -170px;
-            background: #fff;
-            border-radius: 3px;
-            border: 1px solid #ccc;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+	}(document, 'script', 'facebook-jssdk'));
+	function checkLoginState() {
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+	}
+	function test(){
+		document.getElementById('id').value = "Hello";
+	}
+	function statusChangeCallback(response) {
+		console.log('statusChangeCallback');
+		console.log(response);
+		document.getElementById('id').value = "Hello, "
+			+ response.first_name + ' ' + response.last_name + ',';
+		if (response.status === 'connected') {
+			FB.api('/me', {
+				fields : 'first_name,last_name,email'
+			}, function(response) {
+				document.getElementById('id').value = "Hello, "
+						+ response.first_name + ' ' + response.last_name + ',';
+				$.get("register", {
+					first_name : response.first_name,
+					last_name : response.last_name,
+					email : response.email,
+				}, function(result) {
+					window.location.href = "index";
+				});
+			});
 
-        }
-        form {
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-        label {
-            color: #555;
-            display: inline-block;
-            margin-left: 18px;
-            padding-top: 10px;
-            font-size: 14px;
-        }
-        p a {
-            font-size: 11px;
-            color: #aaa;
-            float: right;
-            margin-top: -13px;
-            margin-right: 20px;
-         -webkit-transition: all .4s ease;
-            -moz-transition: all .4s ease;
-            transition: all .4s ease;
-        }
-        p a:hover {
-            color: #555;
-        }
-        input {
-            font-family: "Helvetica Neue", Helvetica, sans-serif;
-            font-size: 12px;
-            outline: none;
-        }
-        input[type=text],
-        input[type=password] ,input[type=time]{
-            color: #777;
-            padding-left: 10px;
-            margin: 10px;
-            margin-top: 12px;
-            margin-left: 18px;
-            width: 290px;
-            height: 35px;
-            border: 1px solid #c7d0d2;
-            border-radius: 2px;
-            box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #f5f7f8;
-            -webkit-transition: all .4s ease;
-            -moz-transition: all .4s ease;
-            transition: all .4s ease;
-            }
-        input[type=text]:hover,
-        input[type=password]:hover,input[type=time]:hover {
-            border: 1px solid #b6bfc0;
-            box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .7), 0 0 0 5px #f5f7f8;
-        }
-        input[type=text]:focus,
-        input[type=password]:focus,input[type=time]:focus {
-            border: 1px solid #a8c9e4;
-            box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #e6f2f9;
-        }
-        #lower {
-            background: #ecf2f5;
-            width: 100%;
-            height: 69px;
-            margin-top: 20px;
-              box-shadow: inset 0 1px 1px #fff;
-            border-top: 1px solid #ccc;
-            border-bottom-right-radius: 3px;
-            border-bottom-left-radius: 3px;
-        }
-        input[type=checkbox] {
-            margin-left: 20px;
-            margin-top: 30px;
-        }
-        .check {
-            margin-left: 3px;
-            font-size: 11px;
-            color: #444;
-            text-shadow: 0 1px 0 #fff;
-        }
-        input[type=submit] {
-            float: right;
-            margin-right: 20px;
-            margin-top: 20px;
-            width: 80px;
-            height: 30px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #acd6ef; /*IE fallback*/
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#acd6ef), to(#6ec2e8));
-            background-image: -moz-linear-gradient(top left 90deg, #acd6ef 0%, #6ec2e8 100%);
-            background-image: linear-gradient(top left 90deg, #acd6ef 0%, #6ec2e8 100%);
-            border-radius: 30px;
-            border: 1px solid #66add6;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .5);
-            cursor: pointer;
-        }
-        input[type=submit]:hover {
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#b6e2ff), to(#6ec2e8));
-            background-image: -moz-linear-gradient(top left 90deg, #b6e2ff 0%, #6ec2e8 100%);
-            background-image: linear-gradient(top left 90deg, #b6e2ff 0%, #6ec2e8 100%);
-        }
-        input[type=submit]:active {
-            background-image: -webkit-gradient(linear, left top, left bottom, from(#6ec2e8), to(#b6e2ff));
-            background-image: -moz-linear-gradient(top left 90deg, #6ec2e8 0%, #b6e2ff 100%);
-            background-image: linear-gradient(top left 90deg, #6ec2e8 0%, #b6e2ff 100%);
-        }
-        
-        </style>
+		} else {
+			// The person is not logged into your app or we are unable to tell.
+			document.getElementById('id').value = 'Please log '
+					+ 'into this app.';
+		}
+	}
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId : '1949657808598458',
+			xfbml : true,
+			version : 'v2.8'
+		});
+		FB.AppEvents.logPageView();
+	};
+	FB.getLoginStatus(function(response) {
+		statusChangeCallback(response);
+	});
+</script>
 </head>
 <body>
+<div id="fb-root"></div>
+<div class="wrap">
+<div class="header">
+	<div class="logo">
+		<h1><a href="index"><img src="img/logo.png" alt=""></a></h1>
+	</div>
+	<div class="h_right">
+	<div class="drp-dwn">
+		<ul>
+			<li><h3>Select ur Language :</h3></li>
+			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+				<option value="">English</option>
+				<option value="">German</option>
+				<option value="">French</option>
+			</select></li>
+			<li><h3 style="margin-left: 10px;">Currency :</h3></li>
+			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+				<option value="">US Dollar-USD</option>
+				<option value="">Euro-EUR</option>
+				<option value="">Indian Rupee-INR</option>
+			</select></li>
+		</ul>
+	</div>
+	<div class="header_top_right">
+	   <div class="login">
+			   	   <span><a href="log"><img src="img/login.png" alt="" title="login"></a></span>
+			   </div>
+			   <c:if
+				test="${sessionScope.username != null}">
+			   			<div class="shopping_cart">
+			   			<div class="cart_img" style="visibility: hidden;">
+				    	
+				    	</div>
+						<div class="cart">
+							<a href="profile" title="View my shopping cart" rel="nofollow">
+									<span class="cart_title">Profile<span class="no_product">(${sessionScope.username })</span></span>
+										
+								</a>
+							</div>
+				     </div>
+					     </c:if>
+			 <div class="clear"></div>
+		 </div>
+	</div>
+	<div class="clear"></div>
+	<div class="h_main">
+		<ul class="nav">
+	        <li class="active"><a href="index.html">Home</a></li>
+	        <li><a href="maintain.html">Search</a></li>
+	        <li><a href="repair.html">Categories</a></li>
+	        <li><a href="contact.html">More</a></li>
+	     </ul>
+	     <div class="search">
+	    	<form>
+	    		<input type="text" value="">
+	    		<input type="submit" value="">
+	    	</form>
+		</div>
+	<div class="clear"></div>
+	</div>
+</div>
+<div class="main">
+<div class="main1">
+				<form action="login" method="post" class="form-4">
+				    <h1>Login or Register</h1>
+				    <p>
+				    ${sessionScope.message }
+				    </p>	
+				    <p>
+				        <label for="login">Username or email</label>
+				        <input type="text" id="username" name="username" placeholder="Username" required>
+				    </p>
+				    <p>
+				        <label for="password">Password</label>
+				        <input type="password" id="password" name='password' placeholder="Password" required> 
+				    </p>
 
-<c:set var="message" scope="session" value="${sessionScope.message}"/>
-<a href="index"><img src="img/CarManiaLogo.jpg" alt="CARMANIA" style="width:128px;height:64px;"></a>
-            <!-- Begin Page Content -->
-            <div id="container">
-<c:if test="${ message != null && fn:contains(message, 'Wrong') }">
-<b><c:out value="${ message }"></c:out></b><br>
-</c:if>
-<c:if test="${ message != null && fn:contains(message, 'Register') }">
-<b><c:out value="${ message }"></c:out></b><br>
-</c:if>
-                <form action="login" method="post">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password">
-                    <div id="lower">
-                        <input type="submit" value="Login">
-                    </div><!--/ lower-->
-                </form>
-                Dont have account? <a href="register.jsp">Register here</a>
-            </div><!--/ container-->
-            <!-- End Page Content -->
-
+				    <p  align="center">
+				        <input type="submit" name="submit" value="Continue">
+				    </p>       
+				    <br>
+				    <p align="center">
+				     <span><fb:login-button size="large" scope="public_profile,email"
+						perms="user_address,user_mobile_phone"
+						onlogin="checkLoginState();" onclick="test();">
+						</fb:login-button></span>
+						</p>
+						<input type="text" style="background-color:transparent;border:none" id="id"/>
+				</form>€‹
+</div>
+</div>
+<div class="footer">
+	<div class="f_left">
+		<div class="f_nav">
+			<ul>
+		        <li><a href="index">Home</a></li>
+				<li><a href="">Search</a></li>
+				<li><a href="">Categories</a></li>
+				<li><a href="">More</a></li>
+		     </ul>
+		</div>
+		<div class="copy">
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers</a></p>
+			</div>
+		</div>
+	<div class="social-icons">
+	   		  	<ul>
+	 			  <li class="icon1"><a href="#" target="_blank"> </a></li>
+			      <li class="icon2"><a href="#" target="_blank"> </a></li>
+			      <li class="icon3"><a href="#" target="_blank"> </a></li>
+			      <li class="icon4"><a href="#" target="_blank"> </a></li>
+			      <div class="clear"></div>
+		     </ul>
+	 </div>
+	 <div class="clear"></div>
+</div>
+</div>
 </body>
 </html>

@@ -45,6 +45,16 @@ public class UserDAO {
 		return valid;
 		
 	}
+	public static String getUserByEmail(String email) throws SQLException {
+		String query = "SELECT username FROM carmania.users WHERE email = ?";
+		PreparedStatement ps = DBManager.getInstance().getConnection().prepareStatement(query);
+		ps.setString(1, email);
+		ResultSet rs = ps.executeQuery();
+		String username = rs.getString(1);
+		ps.close();
+		return username;
+		
+	}
 
 	public static User getUser(String username) throws SQLException {
 		String query1 = "SELECT user_id, username, password, email, age FROM carmania.users WHERE username = ?";
