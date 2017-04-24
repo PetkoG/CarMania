@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page errorPage="error.jsp"%>
 
 <!DOCTYPE HTML>
@@ -13,69 +14,8 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script
-	src="http://connect.facebook.net/en_US/all.js#xfbml=1&
-      appId=YOUR_APP_ID"></script>
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1949657808598458";
-		fjs.parentNode.insertBefore(js, fjs);
-
-	}(document, 'script', 'facebook-jssdk'));
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-	}
-	function test(){
-		document.getElementById('id').value = "Hello";
-	}
-	function statusChangeCallback(response) {
-		console.log('statusChangeCallback');
-		console.log(response);
-		document.getElementById('id').value = "Hello, "
-			+ response.first_name + ' ' + response.last_name + ',';
-		if (response.status === 'connected') {
-			FB.api('/me', {
-				fields : 'first_name,last_name,email'
-			}, function(response) {
-				document.getElementById('id').value = "Hello, "
-						+ response.first_name + ' ' + response.last_name + ',';
-				$.get("register", {
-					first_name : response.first_name,
-					last_name : response.last_name,
-					email : response.email,
-				}, function(result) {
-					window.location.href = "index";
-				});
-			});
-
-		} else {
-			// The person is not logged into your app or we are unable to tell.
-			document.getElementById('id').value = 'Please log '
-					+ 'into this app.';
-		}
-	}
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId : '1949657808598458',
-			xfbml : true,
-			version : 'v2.8'
-		});
-		FB.AppEvents.logPageView();
-	};
-	FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
-	});
-</script>
 </head>
 <body>
-<div id="fb-root"></div>
 <div class="wrap">
 <div class="header">
 	<div class="logo">
@@ -99,7 +39,7 @@
 		</ul>
 	</div>
 	<div class="header_top_right">
-	   <c:if
+	<c:if
 				test="${sessionScope.username == null}">
 	   <div class="login">
 			   	   <span><a href="log"><img src="img/login.png" alt="" title="login"></a></span>
@@ -131,6 +71,7 @@
 						</div>
 				     </div>
 				 </c:if>
+			
 			 <div class="clear"></div>
 		 </div>
 	</div>
@@ -153,31 +94,77 @@
 </div>
 <div class="main">
 <div class="main1">
-				<form action="login" method="post" class="form-4">
-				    <h1>Login</h1>
+				<form action="register" method="post" class="form-4">
+				    <h1>Register User</h1>
 				    <p>
-				    ${sessionScope.message }
-				    </p>	
+				   <c:if test="${(message != null && fn:contains(message, 'Successful'))}">
+					<b>	<c:out value="${ message }"></c:out></b>	
+					</c:if>
+					<c:if test="${(message != null && fn:contains(message, 'taken'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
+				    </p>
+				    <h2 style="color:pink;">Username:</h2>	
 				    <p>
-				        <label for="login">Username or email</label>
-				        <input type="text" id="username" name="username" placeholder="Username" required>
+				   <c:if test="${(message != null && fn:contains(message, 'username'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
+				    </p>
+				    <p>
+				        <label for="login">Username</label>
+				        <input type="text" id="username" name="username" placeholder="Please enter desired username" required>
+				    </p>
+				    <h2 style="color:pink;">E-mail:</h2>
+				    <p>
+				   <c:if test="${(message != null && fn:contains(message, 'email'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
+				    </p>
+				     <p>
+				        <label for="email">E-mail</label>
+				        <input type="text" id="email" name="email" placeholder="Please enter your correct E-mail" required>
+				    </p>
+				    <h2 style="color:pink;">Password:</h2>
+				    <p>
+				   <c:if test="${(message != null && fn:contains(message, 'password'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
 				    </p>
 				    <p>
 				        <label for="password">Password</label>
-				        <input type="password" id="password" name='password' placeholder="Password" required> 
+				        <input type="password" id="password" name='password' placeholder="Please enter at least 8 letter password" required> 
+				    </p>
+				    <p>
+				        <label for="password">Password</label>
+				        <input type="password" id="password2" name='password_confirm' placeholder="Please repeat your password" required> 
+				    </p>
+				    <h2 style="color:pink;">Phones:</h2>
+				    <p>
+				   <c:if test="${(message != null && fn:contains(message, 'phone'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
+				    </p>
+				    <p>
+				        <label for="phone">Phone</label>
+				        <input type="text" id="phone" name='phone1' placeholder="Please enter phone #1" required> 
+				        <input type="text" id="phone" name='phone2' placeholder="Please enter phone #2 (Optional)">
+				        <input type="text" id="phone" name='phone3' placeholder="Please enter phone #3 (Optional)">
+				    </p>
+				    <h2 style="color:pink;">Age:</h2>
+				    <p>
+				   <c:if test="${(message != null && fn:contains(message, 'age'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
+				    </p>
+				     <p>
+				        <label for="login">Age</label>
+				        <input type="text" id="age" name="age" placeholder="Please enter your age" required>
 				    </p>
 
 				    <p  align="center">
 				        <input type="submit" name="submit" value="Continue">
 				    </p>       
 				    <br>
-				    <p align="center">
-				     <span><fb:login-button size="large" scope="public_profile,email"
-						perms="user_address,user_mobile_phone"
-						onlogin="checkLoginState();" onclick="test();">
-						</fb:login-button></span>
-						</p>
-						<input type="text" style="background-color:transparent;border:none" id="id"/>
 				</form>€‹
 </div>
 </div>

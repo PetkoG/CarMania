@@ -29,7 +29,7 @@ import com.model.User;
 
 @Controller
 @MultipartConfig
-public class SearchController {
+public class AdvertController {
 	private static long imageName = 1;
 	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"Petko"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	
@@ -259,7 +259,12 @@ public class SearchController {
 		}
 		
 	}
-	
+	@RequestMapping(value="/showSearch", method=RequestMethod.GET)
+	public String login(Model viewModel,HttpSession session) {
+		//System.out.println("Successful login with facebook");
+		//session.setAttribute("logged", true);
+		return "search";
+	}
 	@RequestMapping(value="/deleteAdvert", method=RequestMethod.POST)
 	public String deleteAdvert(Model viewModel,HttpSession session,@RequestParam Integer advertId) {
 		if (session.getAttribute("username") == null){
