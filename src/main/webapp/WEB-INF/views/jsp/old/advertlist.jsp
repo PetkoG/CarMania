@@ -48,7 +48,7 @@ font-size:115%;
 		</p>
 	</div><br>
 </c:forEach>
-<div align="center" class="page">
+<div align="center" class="">
 Page:
 <c:set var="pg" scope="session" value="${sessionScope.maxPages }"/>
 <c:forEach var="i" begin="1" end="${pg}">

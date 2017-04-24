@@ -48,19 +48,38 @@
 		</ul>
 	</div>
 	<div class="header_top_right">
+	   <c:if
+				test="${sessionScope.username == null}">
 	   <div class="login">
-			   	   <span><a href="/MyProject/log"><img src="img/login.png" alt="" title="login"></a></span>
+			   	   <span><a href="log"><img src="img/login.png" alt="" title="login"></a></span>
 			   </div>
-			   			    <div class="shopping_cart">
+			   <div class="shopping_cart">
 				    		<div class="cart_img" style="visibility: hidden;">
 				    	
 				    	</div>
 						<div class="cart">
-							<a href="profile" title="View my shopping cart" rel="nofollow">
+							<a href="reg" title="Register New User" rel="nofollow">
+									<span class="cart_title">Register<span class="no_product"> (New User)</span></span>
+								</a>
+						</div>
+				     </div>
+			    </c:if>
+			   <c:if
+				test="${sessionScope.username != null}">
+				<div class="login">
+			   	   <span><a href="logout"><img src="img/login.png" alt="" title="logout"></a></span>
+			   </div>
+			    <div class="shopping_cart">
+				    		<div class="cart_img" style="visibility: hidden;">
+				    	
+				    	</div>
+						<div class="cart">
+							<a href="profile" title="View My Profile" rel="nofollow">
 									<span class="cart_title">Profile<span class="no_product">(${sessionScope.username })</span></span>
 								</a>
 						</div>
 				     </div>
+				 </c:if>
 			 <div class="clear"></div>
 		 </div>
 	</div>
@@ -68,7 +87,7 @@
 	<div class="h_main">
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
-	        <li><a href="maintain.html">Search</a></li>
+	        <li><a href="showSearch">Search</a></li>
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
@@ -89,8 +108,8 @@
 			</c:forEach>
 					<a href="#"><img src="img/Ceca.jpeg" alt="image1" height="360" width="480"/></a>
 					<a href="#"><img src="img/CarManiaLogo.jpg" alt="image2" height="360" width="480"/></a>
-					<a href="#"><img src="file:\\C:\Users\Petko\Desktop\CarManiaImages\1.jpeg" alt="image3" /></a>
-					<a href="#"><img src="images/4.jpg" alt="image4" /></a>
+					<a href="#"><img src="image?imageName=1.jpeg" alt="image3" /></a>
+					<a href="#"><img src="images/4.jpg" alt="image4" /></a>	
 					<a href="#"><img src="images/5.jpg" alt="image5" /></a>
 					<a href="#"><img src="images/6.jpg" alt="image1" /></a>
 					<a href="#"><img src="images/7.jpg" alt="image2" /></a>
