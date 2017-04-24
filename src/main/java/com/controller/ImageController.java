@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,19 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ImageController {
-	
+		
 	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"Petko"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	
-	@RequestMapping(value="/image", method=RequestMethod.GET)
+	@RequestMapping(value="/image/{fileName}", method=RequestMethod.GET)
 	@ResponseBody
-	public void getImage(@RequestParam String fileName, HttpServletResponse response) {
-		File file = new File(FILE_LOCATION + fileName);
-		System.out.println("FAIL" + file);
-		try {
-			Files.copy(file.toPath(), response.getOutputStream());
-		} catch (IOException e) {
-			System.out.println("Failed to copy image" + e.getMessage());
-		}
+	public void prepareForUpload(@PathVariable("fileName") String fileName, HttpServletResponse resp) throws IOException {
+		File file = new File(FILE_LOCATION + fileName + ".jpeg");
+		Files.copy(file.toPath(), resp.getOutputStream());
 	}
 
 }

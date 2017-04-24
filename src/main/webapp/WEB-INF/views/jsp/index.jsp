@@ -108,7 +108,7 @@
 			</c:forEach>
 					<a href="#"><img src="img/Ceca.jpeg" alt="image1" height="360" width="480"/></a>
 					<a href="#"><img src="img/CarManiaLogo.jpg" alt="image2" height="360" width="480"/></a>
-					<a href="#"><img src="image?imageName=1.jpeg" alt="image3" /></a>
+					<a href="#"><img src="image/1" alt="image3" /></a>
 					<a href="#"><img src="images/4.jpg" alt="image4" /></a>	
 					<a href="#"><img src="images/5.jpg" alt="image5" /></a>
 					<a href="#"><img src="images/6.jpg" alt="image1" /></a>
