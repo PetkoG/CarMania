@@ -393,6 +393,13 @@ p.note{
 	background: linear-gradient(to bottom, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#585858', endColorstr='#1f1f1f',GradientType=0 );
 }
+.profileinfo {
+	font-color: white;
+	color: #969696;
+	font-size: 20px;
+	font-weight: normal;
+	font-family: 'Anaheim', sans-serif;
+}
 .images_1_of_4 {
 	width: 22.333%;
 }
