@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +28,12 @@ public class ImageController {
 	@ResponseBody
 	public void prepareForUpload(@PathVariable("fileName") String fileName, HttpServletResponse resp) throws IOException {
 		File file = new File(FILE_LOCATION + fileName + ".jpeg");
-		Files.copy(file.toPath(), resp.getOutputStream());
+		try {
+			Files.copy(file.toPath(), resp.getOutputStream());
+		} catch (IOException e) {
+			System.out.println("No such file");
+			resp.sendError(0);
+		}
 	}
 
 }

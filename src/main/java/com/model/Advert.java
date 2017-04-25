@@ -23,11 +23,11 @@ public class Advert {
 	private String fuelType;	
 	private String bodyType;
 	private String image;
-	
+	private boolean vip;
 
 	public Advert(String mark, String model, int price, String category, int year, int horsePower, int mileage,
 			String color, int userId, String title, String description, LocalDate creationTime,
-			String transmissionType, String fuelType, String bodyType, String image) {
+			String transmissionType, String fuelType, String bodyType, String image,boolean vip) {
 		this.mark = mark;
 		this.model = model;
 		this.price = price;
@@ -45,6 +45,15 @@ public class Advert {
 		this.image = image;
 		this.comments = new ArrayList<>();
 		this.creationTime = creationTime;
+		this.vip=vip;
+	}
+
+	public boolean isVip() {
+		return vip;
+	}
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
 	}
 
 	public String getImage() {

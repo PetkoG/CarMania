@@ -2,28 +2,79 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page errorPage="error.jsp"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>The Auto-Tuning Website Template | Home :: w3layouts</title>
+<title>The Auto-Tuning Website Template | 404 :: w3layouts</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!--slider-->
-<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.gallery.js"></script>
-<script type="text/javascript">
-		$(function() {
-		$('#dg-container').gallery({
-		autoplay	:	true
-	});
-});
-</script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="http://connect.facebook.net/en_US/all.js#xfbml=1&
+      appId=YOUR_APP_ID"></script>
+<style>
+h3 {
+	color: #FF3760;
+	text-transform: capitalize;
+	font-size: 1em;
+	font-weight: normal;
+	font-family: 'Anaheim', sans-serif;
+	margin-bottom: 6%;
+}
+h1 {
+	color: #969696;
+	text-transform: capitalize;
+	font-size: 2.0em;
+	font-weight: normal;
+	font-family: 'Anaheim', sans-serif;
+}
 
+input[type=submit] {
+	background: #585858;
+	background: -moz-linear-gradient(top, #585858 0%, #313131 1%, #2d2d2d 20%, #232323 70%, #1f1f1f 99%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#585858), color-stop(1%,#313131), color-stop(20%,#2d2d2d), color-stop(70%,#232323), color-stop(99%,#1f1f1f));
+	background: -webkit-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: -o-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: -ms-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: linear-gradient(to bottom, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#585858', endColorstr='#1f1f1f',GradientType=0 );
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: middle;
+	zoom: 1;
+	border: 1px solid #272525;
+	line-height: 32px;
+	padding: 2px 20px;
+	font-weight: 300;
+	font-size: 14px;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #666666;
+	text-shadow: 0 1px 1px rgba(5, 5, 5, 0.47);
+	text-decoration: none;
+	text-align: center;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+}
+.form-custom {
+   width: 26%;
+    margin: -30px auto 0px;
+    padding: -50px;
+    position: relative;
+
+}
+.custom {
+	margin-top:3%;
+	margin-bottom:3%;
+	width:1000px;
+	display: inline-block;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -88,8 +139,8 @@
 	<div class="clear"></div>
 	<div class="h_main">
 		<ul class="nav">
-	        <li class="active"><a href="index">Home</a></li>
-	        <li><a href="showSearch">Search</a></li>
+	        <li class="active"><a href="index.html">Home</a></li>
+	        <li><a href="maintain.html">Search</a></li>
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
@@ -102,83 +153,54 @@
 	<div class="clear"></div>
 	</div>
 </div>
-<div class="container">
-	<section id="dg-container" class="dg-container">
-			<div class="dg-wrapper" id="gallery">
-			<c:forEach var="i" begin="1" end="5">
-  				
-			</c:forEach>
-					<a href="advert?id=14"><img src="img/Ceca.jpeg" alt="image1" height="360" width="480"/></a>
-					<a href="#"><img src="img/CarManiaLogo.jpg" alt="image2" height="360" width="480"/></a>
-					<a href="#"><img src="image/1" alt="image3" /></a>
-					<a href="#"><img src="image/2" alt="image4" /></a>	
-					<a href="#"><img src="images/5.jpg" alt="image5" /></a>
-					<a href="#"><img src="images/6.jpg" alt="image1" /></a>
-					<a href="#"><img src="images/7.jpg" alt="image2" /></a>
-					<a href="#"><img src="images/8.jpg" alt="image3" /></a>
-			</div>
-	</section>
-</div>
 <div class="main">
-	<div class="section group">
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="image/1"></a>
-			   <a href="details.html"><h3>Lorem Ipsum is</h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic3.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src=".pic2.jpg"></a>
-			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic4.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="section group btm">
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic5.jpg"></a>
-			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic6.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic7.jpg"></a>
-			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic8.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-			<div class="clear"></div>
-		</div>
+<div class="boxes">
+
+<h1>Search results</h1>
+<br>
+		<div class="custom">
+		<section>
+		<ul class="lb-album">
+				<c:forEach var="advert" items="${sessionScope.matched}">
+				<li>
+						<a href="image/${advert.image }">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+						</a>
+						<div class="lb-overlay" id="image-1">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+							<a href="image/${advert.image }" class="lb-close"> </a>
+						</div>
+						<p>${advert.description }</p>
+						<div class="rd_more">
+							<a href="" class="button button-rounded">Read More</a>
+						</div>
+					</li>
+				</c:forEach>
+				</section>
+				</ul>
+</div>
+</div>
 </div>
 <div class="footer">
 	<div class="f_left">
 		<div class="f_nav">
 			<ul>
 		        <li><a href="index">Home</a></li>
-				<li><a href="showSearch">Search</a></li>
+				<li><a href="">Search</a></li>
 				<li><a href="">Categories</a></li>
 				<li><a href="">More</a></li>
-		     </ul>	
+		     </ul>
 		</div>
 		<div class="copy">
-				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers</a></p>
 			</div>
 		</div>
 	<div class="social-icons">
-	   		  	<ul>	
+	   		  	<ul>
 	 			  <li class="icon1"><a href="#" target="_blank"> </a></li>
 			      <li class="icon2"><a href="#" target="_blank"> </a></li>
 			      <li class="icon3"><a href="#" target="_blank"> </a></li>
-			      <li class="icon4"><a href="#" target="_blank"> </a></li>	
+			      <li class="icon4"><a href="#" target="_blank"> </a></li>
 			      <div class="clear"></div>
 		     </ul>
 	 </div>

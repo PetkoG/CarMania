@@ -7,6 +7,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
@@ -30,7 +31,7 @@ import com.model.User;
 @Controller
 @MultipartConfig
 public class AdvertController {
-	private static long imageName = 1;
+	private static long imageName = new Random().nextInt(99999);
 	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"Petko"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
@@ -194,7 +195,7 @@ public class AdvertController {
 													}
 													Advert add = new Advert(mark, model, price, category, year, hp,
 															mileage, color, userId, title, description, LocalDate.now(),
-															transmissionType, fuel, bodyType, imageName+".jpeg");
+															transmissionType, fuel, bodyType, imageName+".jpeg",false);
 													imageName++;
 													try {
 														AdvertDAO.addAdvert(add);

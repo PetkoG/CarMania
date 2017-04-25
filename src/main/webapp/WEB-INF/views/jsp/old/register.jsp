@@ -80,7 +80,6 @@ width: full;
         <p class="help-block">Please confirm password</p>
       </div>
     </div>
-    
     <div class="control-group">
       <!-- Password -->
       <b><c:if test="${(message != null && fn:contains(message, 'phone'))}">
@@ -94,7 +93,6 @@ width: full;
         <p class="help-block">Enter up to 3 Phone Numbers</p>
       </div>
     </div>
-    
     <div class="control-group">
       <!-- Years -->
       <b><c:if test="${(message != null && fn:contains(message, 'age'))}">
@@ -106,7 +104,6 @@ width: full;
         <p class="help-block">Enter age</p>
       </div>
     </div>
- 
     <div class="control-group">
       <!-- Button -->
       <div class="controls">

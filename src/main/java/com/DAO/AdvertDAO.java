@@ -65,7 +65,7 @@ public class AdvertDAO {
 	public static ArrayList<Advert> getMatchedAdverts(SearchParams params) throws SQLException {
 		ArrayList<Advert> adverts = new ArrayList<>();
 		String sql = "SELECT advert_id, marks.mark, models.model, price, categories.category, year, hp, mileage, color, user_id_fk,"
-				+ " title, description, creation, transmission, fuel, bodytypes.bodytype, image FROM adverts JOIN categories ON"
+				+ " title, description, creation, transmission, fuel, bodytypes.bodytype, image, vip FROM adverts JOIN categories ON"
 				+ " adverts.category = categories.category_id JOIN marks ON adverts.mark = marks.mark_id JOIN models ON"
 				+ " adverts.model = models.model_id JOIN bodytypes ON adverts.bodytype = bodytypes.bodytype_id "
 				+ "WHERE adverts.mark = IFNULL((SELECT mark_id FROM marks WHERE marks.mark = ?),adverts.mark) AND"
@@ -115,9 +115,9 @@ public class AdvertDAO {
 				String fuel = rs.getString("fuel");
 				String bodyType = rs.getString("bodytype");
 				String image = rs.getString("image");
-	
+				boolean vip = rs.getBoolean("vip");
 				Advert advert = new Advert(mark, model, price, category, year, hp, mileage, color, userId, title,
-						description, date, transmission, fuel, bodyType, image);
+						description, date, transmission, fuel, bodyType, image,vip);
 				advert.setId(id);
 				
 				adverts.add(advert);
@@ -176,7 +176,7 @@ public class AdvertDAO {
 	
 	public static Advert getAdvert(int advertId) throws SQLException{
 		String sql = "SELECT advert_id, marks.mark, models.model, price, categories.category, year, hp, mileage,"
-				+ " color, user_id_fk, title, description, creation, transmission, fuel, bodytypes.bodytype, image FROM"
+				+ " color, user_id_fk, title, description, creation, transmission, fuel, bodytypes.bodytype, image, vip FROM"
 				+ " adverts JOIN categories ON adverts.category = categories.category_id JOIN marks ON adverts.mark ="
 				+ " marks.mark_id JOIN models ON adverts.model = models.model_id JOIN bodytypes ON adverts.bodytype ="
 				+ " bodytypes.bodytype_id WHERE advert_id = ?";
@@ -204,9 +204,10 @@ public class AdvertDAO {
 				String fuel = rs.getString("fuel");
 				String bodyType = rs.getString("bodytype");
 				String image = rs.getString("image");
+				boolean vip = rs.getBoolean("vip");
 	
 				Advert advert = new Advert(mark, model, price, category, year, hp, mileage, color, userId, title,
-						description, date, transmission, fuel, bodyType, image);
+						description, date, transmission, fuel, bodyType, image,vip);
 				advert.setId(id);
 	
 				String sql2 = "SELECT text, user_id_fk FROM carmania.comments WHERE advert_id_fk = ?";
@@ -259,7 +260,7 @@ public class AdvertDAO {
 			int userId = rs2.getInt(1);
 			
 			String sql2 = "SELECT advert_id, marks.mark, models.model, price, categories.category, year, hp, mileage, color,"
-					+ " user_id_fk, title, description, creation, transmission, fuel, bodytypes.bodytype, image FROM adverts JOIN"
+					+ " user_id_fk, title, description, creation, transmission, fuel, bodytypes.bodytype, image, vip FROM adverts JOIN"
 					+ " categories ON adverts.category = categories.category_id JOIN marks ON adverts.mark = marks.mark_id"
 					+ " JOIN models ON adverts.model = models.model_id JOIN bodytypes ON adverts.bodytype = bodytypes.bodytype_id WHERE"
 					+ " user_id_fk = ? ";
@@ -285,9 +286,10 @@ public class AdvertDAO {
 				String fuel = rs.getString("fuel");
 				String bodyType = rs.getString("bodytype");
 				String image = rs.getString("image");
+				boolean vip = rs.getBoolean("vip");
 	
 				Advert advert = new Advert(mark, model, price, category, year, hp, mileage, color, user_id, title,
-						description, date, transmission, fuel, bodyType, image);
+						description, date, transmission, fuel, bodyType, image, vip);
 				advert.setId(id);
 				
 				myAdverts.add(advert);
