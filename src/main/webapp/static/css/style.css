@@ -1438,7 +1438,138 @@ form{
 .no-placeholder .form-4 label {
     display: block;
 }
-/***** Media Quries *****/
+
+/***** search form *****/
+
+.form-search {
+    /* Size and position */
+    width: 100%;
+    margin: 60px auto 30px;
+    padding: 10px;
+    position: relative;
+
+}
+
+.form-search h1 {
+	color: #969696;
+	text-transform: capitalize;
+	font-size: 2em;
+	font-weight: normal;
+	font-family: 'Anaheim', sans-serif;
+	margin-bottom: 6%;
+}
+.form-search input[type=text],
+.form-search input[type=password] {
+    /* Size and position */
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 15px;
+
+    /* Styles */
+	border: 1px solid rgba(63, 63, 63, 0.47);
+	background: #C9C9C9;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Font styles */
+    color: #fff;
+    font-size: 13px;
+}
+
+/* Placeholder style (from http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css) */
+
+.form-search input::-webkit-input-placeholder {
+    color: rgba(37,21,26,0.5);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.form-search input:-moz-placeholder {
+    color: rgba(37,21,26,0.5);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.form-search input:-ms-input-placeholder {
+    color: rgba(37,21,26,0.5);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.form-search input[type=text]:hover,
+.form-search input[type=password]:hover {
+	border-color: #B1B1B1;
+}
+
+.form-search input[type=text]:focus,
+.form-search input[type=password]:focus,
+.form-search input[type=submit]:focus {
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.64), inset 0 1px 1px rgba(226, 219, 219, 0.41), 0 0 0 3px rgba(230, 227, 227, 0.84);
+	outline: none;
+}
+.form-search p{
+	color:#ffffff;
+}
+/* Fallback */
+.no-boxshadow .form-search input[type=text]:focus,
+.no-boxshadow .form-search input[type=password]:focus {
+    outline: 1px solid white;
+}
+
+.form-search input[type=submit] {
+	background: #585858;
+	background: -moz-linear-gradient(top, #585858 0%, #313131 1%, #2d2d2d 20%, #232323 70%, #1f1f1f 99%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#585858), color-stop(1%,#313131), color-stop(20%,#2d2d2d), color-stop(70%,#232323), color-stop(99%,#1f1f1f));
+	background: -webkit-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: -o-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: -ms-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: linear-gradient(to bottom, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#585858', endColorstr='#1f1f1f',GradientType=0 );
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: middle;
+	zoom: 1;
+	border: 1px solid #272525;
+	line-height: 32px;
+	padding: 2px 20px;
+	font-weight: 300;
+	font-size: 14px;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #666666;
+	text-shadow: 0 1px 1px rgba(5, 5, 5, 0.47);
+	text-decoration: none;
+	text-align: center;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+}
+/* Fallback */
+.no-boxshadow .form-search input[type=submit]:hover {
+	background: #535353;
+	background: -moz-linear-gradient(top, #585858 0%, #313131 1%, #2d2d2d 20%, #232323 70%, #1f1f1f 99%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#474646), color-stop(1%,#313131), color-stop(20%,#222121), color-stop(70%,#232323), color-stop(99%,#1f1f1f));
+	background: -webkit-linear-gradient(top, #4E4E4E 0%,#292929 1%,#252525 20%,#232323 70%,#1A1919 99%);
+	background: -o-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: -ms-linear-gradient(top, #585858 0%,#313131 1%,#2d2d2d 20%,#232323 70%,#1f1f1f 99%);
+	background: linear-gradient(to bottom, #363636 0%,#272727 1%,#272727 20%,#242323 70%,#222020 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#585858', endColorstr='#1f1f1f',GradientType=0 );
+}
+
+.form-search label {
+    display: none;
+    padding: 0 0 5px 2px;
+    cursor: pointer;
+}
+
+.form-search label:hover ~ input {
+    border-color: #333;
+}
+
+.no-placeholder .form-search label {
+    display: block;
+}
+/***** Media Queries *****/
 @media only screen and (max-width: 1280px) {
 	.wrap{
 		width:95%;

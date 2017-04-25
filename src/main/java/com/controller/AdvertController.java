@@ -87,6 +87,11 @@ public class AdvertController {
 		return "advertlist";
 	}
 	
+	@RequestMapping(value="/ad", method=RequestMethod.GET)
+	public String advert() {
+		return "advert";
+	}
+	
 	@RequestMapping(value="/advert", method=RequestMethod.GET)
 	public String advert(Model viewModel,HttpSession session,@RequestParam Integer id) {
 	Advert advert;
