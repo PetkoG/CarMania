@@ -1,18 +1,21 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page errorPage="error.jsp"%>
+
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>The Auto-Tuning Website Template | Maintains :: w3layouts</title>
+<title>The Auto-Tuning Website Template | 404 :: w3layouts</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="http://connect.facebook.net/en_US/all.js#xfbml=1&
+      appId=YOUR_APP_ID"></script>
 <style>
 h3 {
 	color: #FF3760;
@@ -22,10 +25,10 @@ h3 {
 	font-family: 'Anaheim', sans-serif;
 	margin-bottom: 6%;
 }
-h2 {
+h1 {
 	color: #969696;
 	text-transform: capitalize;
-	font-size: 1.3em;
+	font-size: 2.0em;
 	font-weight: normal;
 	font-family: 'Anaheim', sans-serif;
 }
@@ -64,6 +67,14 @@ input[type=submit] {
     padding: -50px;
     position: relative;
 
+}
+.custom {
+margin-left:4.5%;
+margin-right:3%;
+	margin-top:3%;
+	margin-bottom:3%;
+	width:900px;
+	display: inline-block;
 }
 </style>
 </head>
@@ -130,60 +141,77 @@ input[type=submit] {
 	<div class="clear"></div>
 	<div class="h_main">
 		<ul class="nav">
-	        <li class="active"><a href="index.html">Home</a></li>
+	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
-	     
+	     <div class="search">
+	    	<form>
+	    		<input type="text" value="">
+	    		<input type="submit" value="">
+	    	</form>
+		</div>
 	<div class="clear"></div>
 	</div>
 </div>
 <div class="main">
-<div class="main1">
-	<div class="profileinfo">
-		<div class="form-4">
-			<h1 align="center" class="hdr_s">Profile</h1>
-			<h2>Username:</h2><h3> ${username}</h3> <h2>Email:</h2> <h3> ${email} </h3>
-			<h2>Age:</h2> <h3>${age}<br></h3><h2>Phone numbers:</h2>
+<div class="boxes">
 
-			<c:forEach var="phone" items="${phoneNumbers}">
-				<h3><c:out value="${phone}" /></h3>
-			</c:forEach>
-		</div>
-		<form action="myAdverts" method="get" class="form-4"  >
-			<input type="submit" value="My Adverts" ></input>
-		</form>
-		<form action="addAdvert" class="form-custom">
-			<input type="submit" value="Add Advert" ></input>
-		</form>
-   </div>
+<h1>My adverts</h1>
+<br>
+		<div class="custom">
+		<section>
+		<ul class="lb-album">
+				<c:forEach var="advert" items="${myAdverts}">
+				<li>
+						<a href="image/${advert.image }">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+						</a>
+						<div class="lb-overlay" id="image-1">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+							<a href="image/${advert.image }" class="lb-close"> </a>
+						</div>
+						<p>${advert.description }</p>
+						<div class="rd_more">
+							<a href="advert?id=${advert.id }" class="button button-rounded" >Read More</a>
+							<a href="deleteAdvert?id=${advert.id }" class="button button-rounded">Delete advert</a>
+						</div>
+					</li>
+				</c:forEach>
+				</section>
+				</ul>
+				
+</div>
+<div align="center" class="">
+</div>
 </div>
 </div>
 <div class="footer">
 	<div class="f_left">
 		<div class="f_nav">
 			<ul>
-		        <li><a href="">Home</a></li>
-				<li><a href="">Search</a></li>
+		        <li><a href="index">Home</a></li>
+				<li><a href="showSearch">Search</a></li>
 				<li><a href="">Categories</a></li>
 				<li><a href="">More</a></li>
 		     </ul>
 		</div>
 		<div class="copy">
-				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers</a></p>
 			</div>
 		</div>
 	<div class="social-icons">
-	   		  	<ul>	
+	   		  	<ul>
 	 			  <li class="icon1"><a href="#" target="_blank"> </a></li>
 			      <li class="icon2"><a href="#" target="_blank"> </a></li>
 			      <li class="icon3"><a href="#" target="_blank"> </a></li>
-			      <li class="icon4"><a href="#" target="_blank"> </a></li>	
+			      <li class="icon4"><a href="#" target="_blank"> </a></li>
 			      <div class="clear"></div>
 		     </ul>
 	 </div>
 	 <div class="clear"></div>
+</div>
 </div>
 </body>
 </html>

@@ -135,7 +135,7 @@ public class AdvertController {
 			try {
 				ArrayList<Advert> myAdverts = AdvertDAO.getMyAdverts(username);
 				model.addAttribute("myAdverts", myAdverts);
-				return "myadverts";
+				return "myAdverts";
 			} catch (SQLException e) {
 				return "error";
 			}
@@ -276,7 +276,7 @@ public class AdvertController {
 		return "search";
 	}
 	@RequestMapping(value="/deleteAdvert", method=RequestMethod.POST)
-	public String deleteAdvert(Model viewModel,HttpSession session,@RequestParam Integer advertId) {
+	public String deleteAdvert(HttpSession session,@RequestParam Integer advertId) {
 		if (session.getAttribute("username") == null){
 			return "login";
 		}
