@@ -232,3 +232,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 </body>
 </html>
+
+3 main
+footer
+
+<div class="main">
+<div class="main1">
+<div class="boxes">
+
+<h1>My adverts</h1>
+<br>
+		<div class="repair" >
+		<section>
+		<ul class="lb-album">
+				<c:forEach var="advert" items="${myAdverts}">
+				<li>
+				<br><br><br>
+						<a href="image/${advert.image }">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+						</a>
+						<div class="lb-overlay" id="image-1">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+							<a href="image/${advert.image }" class="lb-close"> </a>
+						</div>
+						<p>${advert.description }</p>
+						<div class="rd_more">
+							<a href="advert?id=${advert.id }" class="button button-rounded" >Read More</a>
+							<br><br>
+							<a href="deleteAdvert?id=${advert.id }" class="button button-rounded">Delete advert</a>
+						</div>
+						
+					</li>
+					<div class="clear"></div>
+				</c:forEach>
+				
+				</ul>
+				
+				</section>
+				
+				
+</div>
+</div>
+</div>
+</div>

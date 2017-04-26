@@ -53,7 +53,6 @@ public class UserDAO {
 		String username = rs.getString(1);
 		ps.close();
 		return username;
-		
 	}
 
 	public static User getUser(String username) throws SQLException {
@@ -90,6 +89,14 @@ public class UserDAO {
 		ps.close();
 		return id;
 		
+	}
+	public static void changePass(int id,String password) throws SQLException{
+		String query = "UPDATE carmania.users SET password = '?' WHERE user_id = ?";
+		PreparedStatement ps = DBManager.getInstance().getConnection().prepareStatement(query);
+		ps.setString(1, password);
+		ps.setInt(2, id);
+		ps.executeQuery();
+		ps.close();
 	}
 	
 	public static User getUser(int id) throws SQLException{

@@ -143,7 +143,7 @@
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
-	     <div class="search">
+	     <div hidden="true" class="search">
 	    	<form>
 	    		<input type="text" value="">
 	    		<input type="submit" value="">

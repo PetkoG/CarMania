@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.DAO.AdvertDAO;
 import com.DAO.UserDAO;
+import com.itextpdf.text.log.SysoCounter;
 import com.model.PasswordValidator;
 import com.model.SendEmail;
 import com.model.User;
@@ -29,6 +31,18 @@ public class UserController {
 		String redirectUrl = "/login?eng=bg";
 		return "login" ;
 	}
+	@RequestMapping(value="/changePass", method=RequestMethod.GET)
+	public String login(Model viewModel,HttpSession session,@RequestParam String newPass) {
+		try {
+			User u = ((User) UserDAO.getUser((String) session.getAttribute("username")));
+			UserDAO.changePass(u.getId(), newPass);
+			session.setAttribute("message", "Successfully changed password!");
+		} catch (SQLException e) {
+			System.out.println("Could not change pass");
+			session.setAttribute("message", "Unsuccessfully changed password!");
+		}
+		return "profile" ;
+	}
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String profile(Model viewModel,HttpSession session) {
 		String username;
@@ -37,11 +51,19 @@ public class UserController {
 			if (session.getAttribute("username") != null){
 				username = (String) session.getAttribute("username");
 				try {
-					User user = UserDAO.getUser(username);
-					session.setAttribute("username", user.getUsername());
-					session.setAttribute("email", user.getEmail());
-					session.setAttribute("age", user.getAge());
-					session.setAttribute("phoneNumbers", user.getPhoneNumbers());
+					if(session.getAttribute("facebookUser") != null){
+						User user = ((User) session.getAttribute("facebookUser"));
+						session.setAttribute("username", user.getUsername());
+						session.setAttribute("email", user.getEmail());
+					}
+						else{
+							User user = UserDAO.getUser(username);
+							session.setAttribute("username", user.getUsername());
+							session.setAttribute("email", user.getEmail());
+							session.setAttribute("age", user.getAge());
+							session.setAttribute("phoneNumbers", user.getPhoneNumbers());
+						}
+					
 					return "profile";
 					
 				} catch (SQLException e) {
@@ -98,16 +120,21 @@ public class UserController {
 			session.setAttribute("username", newUser);
 			return "index";
 		}
-			else {
+		else {
 			int randomId=new Random().nextInt(10000);
 			String user = first_name.concat(last_name) + randomId;
 			String pass = first_name.concat(last_name) + randomId;
 			SendEmail.sendEmail(email, first_name+" "+last_name, pass,user);
 			User u = new User(user, pass, email);
-			// UserDAO.addUser(u);
+			try {
+				UserDAO.addUser(u);
+			} catch (SQLException e) {
+				System.out.println("Problem adding user to DB");
+			}
 			System.out.println("sent register email to " + email);
 			session.setAttribute("email", email);
 			session.setAttribute("username", user);
+			session.setAttribute("facebookUser" , u);
 			return "index";
 		 }
 	}

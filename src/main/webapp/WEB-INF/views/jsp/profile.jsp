@@ -11,6 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <style>
@@ -156,6 +157,14 @@ input[type=submit] {
 		</form>
 		<form action="addAdvert" class="form-custom">
 			<input type="submit" value="Add Advert" ></input>
+		</form>
+		<br><br>
+		<c:if test="${(message != null && fn:contains(message, 'password'))}">
+						<c:out value="${ message }"></c:out></b>
+					</c:if>
+		<form action="changePass" class="form-custom">
+			<input type="text" name="newPass" placeholder="Please enter your new Password" ></input>
+			<input type="submit" value="Change Password" ></input>
 		</form>
    </div>
 </div>

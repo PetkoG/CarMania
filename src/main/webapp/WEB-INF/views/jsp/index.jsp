@@ -138,16 +138,16 @@
 <div class="section group">
 	<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="0" end="3"> 
 	<div class="grid_1_of_4 images_1_of_4">
-			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="200"></a>
+			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="220"></a>
 			   <a href="advert?id=${advert.id }"><h3>${advert.description }</h3></a>
 		</div>
 	</c:forEach>
 		<div class="clear"></div>
 	</div>
 	<div class="section group btm">
-		<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="3" end="6"> 
+		<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="4" end="7"> 
 	<div class="grid_1_of_4 images_1_of_4">
-			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="200"></a>
+			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="220"></a>
 			   <a href="advert?id=${advert.id }"><h3>${advert.description }</h3></a>
 		</div>
 	</c:forEach>

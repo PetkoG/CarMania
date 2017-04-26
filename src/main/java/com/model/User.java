@@ -56,4 +56,7 @@ public class User {
 	public ArrayList<String> getPhoneNumbers() {
 		return phoneNumbers;
 	}
+	public int getId() {
+		return (int) this.id;
+	}
 }

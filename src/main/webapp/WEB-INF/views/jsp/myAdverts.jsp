@@ -146,7 +146,7 @@ margin-right:3%;
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
-	     <div class="search">
+	     <div hidden="true" class="search">
 	    	<form>
 	    		<input type="text" value="">
 	    		<input type="submit" value="">
@@ -156,15 +156,16 @@ margin-right:3%;
 	</div>
 </div>
 <div class="main">
+<div class="main1">
 <div class="boxes">
-
-<h1>My adverts</h1>
-<br>
-		<div class="custom">
-		<section>
-		<ul class="lb-album">
-				<c:forEach var="advert" items="${myAdverts}">
+		<h2>why us importance of repair</h2>
+		<div class="repair">
+		     <section>
+				<ul class="lb-album">
 				<li>
+				<c:forEach var="advert" items="${myAdverts}" begin="0" end="3">
+				
+				<br><br><br>
 						<a href="image/${advert.image }">
 							<img src="image/${advert.image }" height="140" width="180" alt="">
 						</a>
@@ -175,16 +176,37 @@ margin-right:3%;
 						<p>${advert.description }</p>
 						<div class="rd_more">
 							<a href="advert?id=${advert.id }" class="button button-rounded" >Read More</a>
+							<br><br>
 							<a href="deleteAdvert?id=${advert.id }" class="button button-rounded">Delete advert</a>
 						</div>
-					</li>
+					
 				</c:forEach>
-				</section>
-				</ul>
+				</li>
+				<li>
+				<c:forEach var="advert" items="${myAdverts}" begin="3" end="8">
 				
-</div>
-<div align="center" class="">
-</div>
+				<br><br><br>
+						<a href="image/${advert.image }">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+						</a>
+						<div class="lb-overlay" id="image-1">
+							<img src="image/${advert.image }" height="140" width="180" alt="">
+							<a href="image/${advert.image }" class="lb-close"> </a>
+						</div>
+						<p>${advert.description }</p>
+						<div class="rd_more">
+							<a href="advert?id=${advert.id }" class="button button-rounded" >Read More</a>
+							<br><br>
+							<a href="deleteAdvert?id=${advert.id }" class="button button-rounded">Delete advert</a>
+						</div>
+					
+				</c:forEach>
+				</li>
+				</ul>
+				</section>
+				</div>
+				
+  </div>
 </div>
 </div>
 <div class="footer">

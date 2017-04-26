@@ -165,12 +165,7 @@ h5 {
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
-	     <div class="search">
-	    	<form>
-	    		<input type="text" value="">
-	    		<input type="submit" value="">
-	    	</form>
-		</div>
+	     
 	<div class="clear"></div>
 	</div>
 </div>
@@ -184,15 +179,15 @@ h5 {
 							<div id="products">
 								<div class="slides_container">
 									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
-									<a href="#" target="_blank"><img src="img/productslide-2.jpg" alt=" " /></a>
-									<a href="#" target="_blank"><img src="img/productslide-3.jpg" alt=" " /></a>
-									<a href="#" target="_blank"><img src="img/productslide-4.jpg" alt=" " /></a>
+									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" /></a>
+									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
+									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
 								</div>
 								<ul class="pagination">
-									<li><a href="#"><img src="img/d_pic1" alt=" " /></a></li>
-									<li><a href="#"><img src="img/d_pic2.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="img/d_pic3.jpg" alt=" " /></a></li>
-									<li><a href="#"><img src="img/d_pic4.jpg" alt=" " /></a></li>
+									<li><a href="#"><img src="image/${sessionScope.advert.image }" alt=" " /></a></li>
+									<li><a href="#"><img src="image/${sessionScope.advert.image }" alt=" " /></a></li>
+									<li><a href="#"><img src="image/${sessionScope.advert.image }" alt=" " /></a></li>
+									<li><a href="#"><img src="image/${sessionScope.advert.image }" alt=" " /></a></li>
 								</ul>
 							</div>
 						</div>
@@ -286,12 +281,9 @@ h5 {
 	  	</div>
  <div class="div2">
         <div id="mcts1">
-        	<img src="img/d_pic2.jpg" alt=""/>
-            <img src="img/d_pic1.jpg" alt="" />
-            <img src="img/d_pic3.jpg" alt="" />
-        	<img src="img/d_pic4.jpg" alt=""/>
-            <img src="img/d_pic1.jpg" alt="" />
-            <img src="img/d_pic4.jpg" alt="" />
+        <c:forEach var="advert" items="${applicationScope.vipAdverts}"> 
+        	<a href="advert?id=${advert.id }"><img src="image/${advert.image }" height="180" width="220" alt=""/></a>
+           </c:forEach>
        </div>
 	</div>
 </div>
