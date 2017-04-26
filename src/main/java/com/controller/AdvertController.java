@@ -71,10 +71,9 @@ public class AdvertController {
 		return "advertlist";
 	}
 	@RequestMapping(value="/searchpage", method=RequestMethod.GET)
-	public String searchPage(Model viewModel,HttpSession session,@RequestParam String page) {
+	public String searchPage(Model viewModel,HttpSession session,@RequestParam Integer page) {
 		SearchParams sp = (SearchParams) session.getAttribute("searchParams");
-		int newPage = validPage(page);
-		sp.setPage(newPage);
+		sp.setPage(page);
 		try {
 			ArrayList<Advert> matched = AdvertDAO.getMatchedAdverts(sp);
 			Integer maxPages = AdvertDAO.pageCount(sp);
@@ -159,6 +158,7 @@ public class AdvertController {
 			@RequestParam(required= false) Integer year,
 			@RequestParam(required= false) String hpText,
 			@RequestParam(required= false) String description,
+			@RequestParam(required= false) String vip,
 			@RequestParam("image") MultipartFile image) {
 
 		String username = ((String)session.getAttribute("username"));
@@ -193,9 +193,13 @@ public class AdvertController {
 														System.out.println("STACKTRACE "+ e1.getMessage() );
 														return "error";
 													}
+													boolean isVip=false;
+													if(vip.equals("vip")) {
+														isVip=true;
+													}
 													Advert add = new Advert(mark, model, price, category, year, hp,
 															mileage, color, userId, title, description, LocalDate.now(),
-															transmissionType, fuel, bodyType, imageName+".jpeg",false);
+															transmissionType, fuel, bodyType, imageName+".jpeg",isVip);
 													imageName++;
 													try {
 														AdvertDAO.addAdvert(add);

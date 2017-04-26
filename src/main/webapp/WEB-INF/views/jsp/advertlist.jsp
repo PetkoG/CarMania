@@ -69,9 +69,11 @@ input[type=submit] {
 
 }
 .custom {
+margin-left:4.5%;
+margin-right:3%;
 	margin-top:3%;
 	margin-bottom:3%;
-	width:1000px;
+	width:900px;
 	display: inline-block;
 }
 </style>
@@ -139,8 +141,8 @@ input[type=submit] {
 	<div class="clear"></div>
 	<div class="h_main">
 		<ul class="nav">
-	        <li class="active"><a href="index.html">Home</a></li>
-	        <li><a href="maintain.html">Search</a></li>
+	        <li class="active"><a href="index">Home</a></li>
+	        <li><a href="showSearch">Search</a></li>
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
@@ -172,12 +174,21 @@ input[type=submit] {
 						</div>
 						<p>${advert.description }</p>
 						<div class="rd_more">
-							<a href="" class="button button-rounded">Read More</a>
+							<a href="advert?id=${advert.id }" class="button button-rounded">Read More</a>
 						</div>
 					</li>
 				</c:forEach>
 				</section>
 				</ul>
+				
+</div>
+<div align="center" class="">
+Page:
+<c:set var="pg" scope="session" value="${sessionScope.maxPages }"/>
+<c:forEach var="i" begin="1" end="${pg}">
+   <a href="searchpage?page=<c:out value="${i}"/>"><c:out value="${i}"/></a>
+</c:forEach>
+
 </div>
 </div>
 </div>
@@ -186,7 +197,7 @@ input[type=submit] {
 		<div class="f_nav">
 			<ul>
 		        <li><a href="index">Home</a></li>
-				<li><a href="">Search</a></li>
+				<li><a href="showSearch">Search</a></li>
 				<li><a href="">Categories</a></li>
 				<li><a href="">More</a></li>
 		     </ul>

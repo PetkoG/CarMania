@@ -17,9 +17,9 @@ public class AdvertDAO {
 	public synchronized static void addAdvert(Advert advert) throws SQLException {
 		
 		String sql = "INSERT INTO adverts(mark, model, price, category, year, hp, mileage, color, user_id_fk, title,"
-				+ " description, creation, transmission, fuel, bodytype, image) VALUES ((SELECT mark_id FROM marks WHERE marks.mark = ? LIMIT 1),"
+				+ " description, creation, transmission, fuel, bodytype, image, vip) VALUES ((SELECT mark_id FROM marks WHERE marks.mark = ? LIMIT 1),"
 				+ "(SELECT model_id FROM models WHERE models.model = ? LIMIT 1),?,(SELECT category_id FROM categories WHERE categories.category = ? LIMIT 1)"
-				+ ",?,?,?,?,?,?,?,?,?,?,(SELECT bodytype_id FROM bodytypes WHERE bodytypes.bodytype = ? LIMIT 1),?)";
+				+ ",?,?,?,?,?,?,?,?,?,?,(SELECT bodytype_id FROM bodytypes WHERE bodytypes.bodytype = ? LIMIT 1),?,?)";
 		PreparedStatement ps;
 		Date date = java.sql.Date.valueOf(advert.getCreationTime());
 		System.out.println(advert.getCreationTime());
@@ -40,6 +40,7 @@ public class AdvertDAO {
 		ps.setString(14, advert.getFuelType());
 		ps.setString(15, advert.getBodyType());
 		ps.setString(16, advert.getImage());
+		ps.setBoolean(17, advert.isVip());
 		try{
 			ps.execute();
 		}
@@ -74,7 +75,7 @@ public class AdvertDAO {
 				+ " categories.category = ?),adverts.category) AND year BETWEEN ? AND ? AND hp BETWEEN ? AND ? AND"
 				+ " mileage < ? AND color = IFNULL(?,color) AND transmission = IFNULL(?,transmission) AND"
 				+ " fuel = IFNULL(?,fuel) AND adverts.bodytype = IFNULL((SELECT bodytype_id FROM bodytypes WHERE"
-				+ " bodytypes.bodytype = ?),adverts.bodytype) ORDER BY ? LIMIT 5 OFFSET ?";
+				+ " bodytypes.bodytype = ?),adverts.bodytype) ORDER BY ? LIMIT 4 OFFSET ?";
 		Connection con = DBManager.getInstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, params.getMark());
@@ -92,7 +93,7 @@ public class AdvertDAO {
 		ps.setString(13, params.getFuelType());
 		ps.setString(14, params.getBodyType());
 		ps.setString(15, params.getSortBy());
-		ps.setInt(16, (params.getPage()-1)*5);
+		ps.setInt(16, (params.getPage()-1)*4);
 		ResultSet rs = null;
 		try{
 			rs = ps.executeQuery();
@@ -162,16 +163,76 @@ public class AdvertDAO {
 			ps.setString(15, params.getSortBy());
 			rs = ps.executeQuery();
 			rs.next();
-			if (rs.getInt(1)<5){
+			if (rs.getInt(1)<=4){
 				pages = 1;
 			}else {
-				pages = (rs.getInt(1)/5+1);
+				if(rs.getInt(1)%4==0){
+					pages = (rs.getInt(1)/4);
+				}
+				else {
+					pages = ((rs.getInt(1)/4)+1);
+				}
 			}
 		} finally {
 			if (ps != null) ps.close();
 			if (rs != null) rs.close();
 		}
 		return pages;
+	}
+	
+	public static ArrayList<Advert> getVipAdverts() throws SQLException {
+		String sql = "SELECT advert_id, marks.mark, models.model, price, categories.category, year, hp, mileage,"
+				+ " color, user_id_fk, title, description, creation, transmission, fuel, bodytypes.bodytype, image, vip FROM"
+				+ " adverts JOIN categories ON adverts.category = categories.category_id JOIN marks ON adverts.mark ="
+				+ " marks.mark_id JOIN models ON adverts.model = models.model_id JOIN bodytypes ON adverts.bodytype ="
+				+ " bodytypes.bodytype_id WHERE vip = ?";
+		ArrayList<Advert> adverts = new ArrayList<Advert>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = DBManager.getInstance().getConnection().prepareStatement(sql);
+			ps.setBoolean(1, true);
+			rs = ps.executeQuery();
+			while (rs.next()){
+				int id = rs.getInt("advert_id");
+				String mark = rs.getString("mark");
+				String model = rs.getString("model");
+				int price = rs.getInt("price");
+				String category = rs.getString("category");
+				int year = rs.getInt("year");
+				int hp = rs.getInt("hp");
+				int mileage = rs.getInt("mileage");
+				String color = rs.getString("color");
+				int userId = rs.getInt("user_id_fk");
+				String title = rs.getString("title");
+				String description = rs.getString("description");
+				LocalDate date = rs.getDate("creation").toLocalDate();
+				String transmission = rs.getString("transmission");
+				String fuel = rs.getString("fuel");
+				String bodyType = rs.getString("bodytype");
+				String image = rs.getString("image");
+				boolean vip = rs.getBoolean("vip");
+				Advert advert = new Advert(mark, model, price, category, year, hp, mileage, color, userId, title,
+						description, date, transmission, fuel, bodyType, image,vip);
+				advert.setId(id);
+	
+				String sql2 = "SELECT text, user_id_fk FROM carmania.comments WHERE advert_id_fk = ?";
+				PreparedStatement ps2 = DBManager.getInstance().getConnection().prepareStatement(sql2);
+				ps2.setInt(1, id);
+				ResultSet rs2 = ps2.executeQuery();
+				while(rs2.next()){
+					Comment comment = new Comment(rs2.getString("text"),UserDAO.getUser(rs2.getInt("user_id_fk")), id);
+					advert.getComments().add(comment);
+				}
+				adverts.add(advert);
+			}
+		}
+			finally {
+				if (ps != null) ps.close();
+				if (rs != null) rs.close();
+			}
+		return adverts;
+		
 	}
 	
 	public static Advert getAdvert(int advertId) throws SQLException{

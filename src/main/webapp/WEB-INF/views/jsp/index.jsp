@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page errorPage="error.jsp"%>
@@ -23,6 +23,27 @@
 	});
 });
 </script>
+<style>
+.container h2 {
+	color: #969696;
+	text-transform: capitalize;
+	font-size: 2em;
+	font-weight: normal;
+	font-family: 'Anaheim', sans-serif;
+	margin-top: -5%;
+	margin-bottom: 2%;
+}
+
+.main h2 {
+	color: #969696;
+	text-transform: capitalize;
+	font-size: 2em;
+	font-weight: normal;
+	font-family: 'Anaheim', sans-serif;
+	margin-top: -3%;
+	margin-bottom: 2%;
+}
+</style>
 
 </head>
 <body>
@@ -93,7 +114,7 @@
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
-	     <div class="search">
+	     <div hidden="true" class="search">
 	    	<form>
 	    		<input type="text" value="">
 	    		<input type="submit" value="">
@@ -103,60 +124,34 @@
 	</div>
 </div>
 <div class="container">
+<h2 align="center">Some fresh VIP Adverts:</h2>
 	<section id="dg-container" class="dg-container">
 			<div class="dg-wrapper" id="gallery">
-			<c:forEach var="i" begin="1" end="5">
-  				
+			<c:forEach var="advert" items="${applicationScope.vipAdverts}">
+  				<a href="advert?id=${advert.id }"><img src="image/${advert.image }" alt="Image of advert ${advert.id }" height="360" width="480"/></a>
 			</c:forEach>
-					<a href="advert?id=14"><img src="img/Ceca.jpeg" alt="image1" height="360" width="480"/></a>
-					<a href="#"><img src="img/CarManiaLogo.jpg" alt="image2" height="360" width="480"/></a>
-					<a href="#"><img src="image/1" alt="image3" /></a>
-					<a href="#"><img src="image/2" alt="image4" /></a>	
-					<a href="#"><img src="images/5.jpg" alt="image5" /></a>
-					<a href="#"><img src="images/6.jpg" alt="image1" /></a>
-					<a href="#"><img src="images/7.jpg" alt="image2" /></a>
-					<a href="#"><img src="images/8.jpg" alt="image3" /></a>
 			</div>
 	</section>
 </div>
 <div class="main">
-	<div class="section group">
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="image/1"></a>
-			   <a href="details.html"><h3>Lorem Ipsum is</h3></a>
+<h2 align="center"> Some More Hot Adverts:</h2>
+<div class="section group">
+	<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="0" end="3"> 
+	<div class="grid_1_of_4 images_1_of_4">
+			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="200"></a>
+			   <a href="advert?id=${advert.id }"><h3>${advert.description }</h3></a>
 		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic3.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src=".pic2.jpg"></a>
-			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic4.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
+	</c:forEach>
 		<div class="clear"></div>
 	</div>
 	<div class="section group btm">
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic5.jpg"></a>
-			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
+		<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="3" end="6"> 
+	<div class="grid_1_of_4 images_1_of_4">
+			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="200"></a>
+			   <a href="advert?id=${advert.id }"><h3>${advert.description }</h3></a>
 		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic6.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic7.jpg"></a>
-			  <a href="details.html"><h3>Lorem Ipsum is</h3></a>
-		</div>
-		<div class="grid_1_of_4 images_1_of_4">
-			  <a href="details.html"><img src="images/pic8.jpg"></a>
-			  <a href="details.html"><h3>Lorem is simply </h3></a>
-		</div>
-			<div class="clear"></div>
+	</c:forEach>
+		<div class="clear"></div>
 		</div>
 </div>
 <div class="footer">

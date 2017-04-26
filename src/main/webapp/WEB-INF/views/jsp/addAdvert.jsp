@@ -245,8 +245,8 @@ function populateModel(){
 	<div class="clear"></div>
 	<div class="h_main">
 		<ul class="nav">
-	        <li class="active"><a href="index.html">Home</a></li>
-	        <li><a href="maintain.html">Search</a></li>
+	        <li class="active"><a href="index">Home</a></li>
+	        <li><a href="showSearch">Search</a></li>
 	        <li><a href="repair.html">Categories</a></li>
 	        <li><a href="contact.html">More</a></li>
 	     </ul>
@@ -391,6 +391,10 @@ function populateModel(){
 							<h2>Mileage:</h2> <input type="text" name="mileageText">&emsp;&emsp;&emsp;
 								<h2>Description:</h2>
 						<textarea name="description" rows="4" cols="50"></textarea>
+						<h2>Do you want your advert to be VIP:</h2> <select name="vip">
+						<option value="vip">Vip</option>
+						<option value="normal">Normal</option>
+					</select>
 					<h2>Please upload photo:</h2>
 					<input type="file" id="image" name="image" accept="image/*">
 					<p align="center">
@@ -407,7 +411,7 @@ function populateModel(){
 		<div class="f_nav">
 			<ul>
 		        <li><a href="index">Home</a></li>
-				<li><a href="">Search</a></li>
+				<li><a href="showSearch">Search</a></li>
 				<li><a href="">Categories</a></li>
 				<li><a href="">More</a></li>
 		     </ul>

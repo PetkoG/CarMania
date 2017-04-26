@@ -46,6 +46,11 @@ public class PopulateListener implements ServletContextAware{
     	servletContext.setAttribute("imagePath", FILE_LOCATION);
     	servletContext.setAttribute("catMarkModel", catMarkModel);
     	servletContext.setAttribute("catBody", catBody);
+    	try {
+			servletContext.setAttribute("vipAdverts", AdvertDAO.getVipAdverts());
+		} catch (SQLException e) {
+			System.out.println("Problem fetching VIP Adverts");
+		}
     	
     	cleaner.setDaemon(true);
     	cleaner.start();
