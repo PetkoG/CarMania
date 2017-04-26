@@ -275,14 +275,14 @@ public class AdvertController {
 		//session.setAttribute("logged", true);
 		return "search";
 	}
-	@RequestMapping(value="/deleteAdvert", method=RequestMethod.POST)
-	public String deleteAdvert(HttpSession session,@RequestParam Integer advertId) {
+	@RequestMapping(value="/deleteAdvert", method=RequestMethod.GET)
+	public String deleteAdvert(HttpSession session,@RequestParam Integer id) {
 		if (session.getAttribute("username") == null){
 			return "login";
 		}
 		try {
-			AdvertDAO.deleteAdvert(advertId);
-			return "myadverts";
+			AdvertDAO.deleteAdvert(id);
+			return "myAdverts";
 		} catch (SQLException e) {
 			return "error";
 		}

@@ -74,7 +74,6 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 		<form action="deleteAdvert" method="post">
 		<input type="hidden" value="${advert.id}" name="advertId">
 		<input type="submit" value="delete advert" class="inp">
-		
 		</form>
 	</div><br>
 </c:forEach>
