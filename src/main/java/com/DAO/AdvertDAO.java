@@ -363,6 +363,7 @@ public class AdvertDAO {
 			if (ps2 != null) ps2.close();
 			if (rs != null) rs.close();
 			if (rs2 != null) rs2.close();
+			con.setAutoCommit(true);
 		}
 		return myAdverts;
 	}
@@ -389,6 +390,7 @@ public class AdvertDAO {
 		} finally {
 			if (ps1 != null) ps1.close();
 			if (ps2 != null) ps2.close();
+			con.setAutoCommit(true);
 		}
 	}
 }

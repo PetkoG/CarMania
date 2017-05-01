@@ -5,14 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class PopulateDAO {
 
 	private static PopulateDAO instance;
 
 	//Category -> Mark -> Model
-	private HashMap<String, HashMap<String, ArrayList<String>>> catMarkModel;
+	private HashMap<String, TreeMap<String, ArrayList<String>>> catMarkModel;
 	// Category -> BodyType
 	private HashMap<String, ArrayList<String>> catBody;
 	
@@ -25,7 +27,7 @@ public class PopulateDAO {
 		ResultSet rSet1 = pStatement1.executeQuery();
 		while (rSet1.next()){
 			String category = rSet1.getString(1);
-			catMarkModel.put(category, new HashMap<>());
+			catMarkModel.put(category, new TreeMap<>());
 			catBody.put(category, new ArrayList<>());
 		}
 		
@@ -57,6 +59,12 @@ public class PopulateDAO {
 			catBody.get(category).add(bodytype);
 		}
 		
+		for (TreeMap<String, ArrayList<String>> mark : catMarkModel.values()) {
+			for (ArrayList<String> model : mark.values()) {
+				model.sort(null);
+			}
+		}
+		
 		
 	}
 	public static PopulateDAO getInstance() throws SQLException{
@@ -66,7 +74,7 @@ public class PopulateDAO {
 		return instance;
 	}
 	
-	public HashMap<String, HashMap<String, ArrayList<String>>> getCatMarkModel() {
+	public HashMap<String, TreeMap<String, ArrayList<String>>> getCatMarkModel() {
 		return catMarkModel;
 	}
 	public HashMap<String, ArrayList<String>> getCatBody() {

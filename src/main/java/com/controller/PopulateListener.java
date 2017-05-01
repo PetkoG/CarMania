@@ -4,6 +4,8 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
+
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
@@ -34,7 +36,7 @@ public class PopulateListener implements ServletContextAware{
 	private static final String FILE_LOCATION = "C:"+File.separator+"Users"+File.separator+"Petko"+File.separator+"Desktop"+File.separator+"CarManiaImages"+File.separator;
 	@Override
 	public void setServletContext(ServletContext servletContext) {
-    	HashMap<String, HashMap<String, ArrayList<String>>> catMarkModel = null;
+    	HashMap<String, TreeMap<String, ArrayList<String>>> catMarkModel = null;
     	HashMap<String, ArrayList<String>> catBody = null;
     	
 		try {
