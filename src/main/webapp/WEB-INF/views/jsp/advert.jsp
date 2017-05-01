@@ -197,7 +197,7 @@ h5 {
 					<h2>${sessionScope.advert.title }</h2>
 					<p>${sessionScope.advert.mark } ${sessionScope.advert.model }</p>					
 					<div class="price">
-						<p>Price: <span>${sessionScope.advert.price }</span></p>
+						<p>Price: <span>${sessionScope.advert.price }</span> BGN</p>
 					</div>
 					<div class="available">
 						<p>Advert Characteristics :</p>

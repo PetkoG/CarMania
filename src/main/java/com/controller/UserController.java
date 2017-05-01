@@ -34,8 +34,8 @@ public class UserController {
 	@RequestMapping(value="/changePass", method=RequestMethod.GET)
 	public String login(Model viewModel,HttpSession session,@RequestParam String newPass) {
 		try {
-			User u = ((User) UserDAO.getUser((String) session.getAttribute("username")));
-			UserDAO.changePass(u.getId(), newPass);
+			User u = (UserDAO.getUser((String) session.getAttribute("username")));
+			UserDAO.changePass(u.getId(),  DigestUtils.md5Hex(newPass).toUpperCase());
 			session.setAttribute("message", "Successfully changed password!");
 		} catch (SQLException e) {
 			System.out.println("Could not change pass");
@@ -125,7 +125,7 @@ public class UserController {
 			String user = first_name.concat(last_name) + randomId;
 			String pass = first_name.concat(last_name) + randomId;
 			SendEmail.sendEmail(email, first_name+" "+last_name, pass,user);
-			User u = new User(user, pass, email);
+			User u = new User(user, DigestUtils.md5Hex(pass).toUpperCase(), email);
 			try {
 				UserDAO.addUser(u);
 			} catch (SQLException e) {
