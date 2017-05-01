@@ -17,6 +17,9 @@
 	src="http://connect.facebook.net/en_US/all.js#xfbml=1&
       appId=YOUR_APP_ID"></script>
 <style>
+div.pages{
+	font-color:white;
+}
 h3 {
 	color: #FF3760;
 	text-transform: capitalize;
@@ -93,8 +96,8 @@ margin-right:3%;
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
-			<li><h3>Select your Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -143,8 +146,6 @@ margin-right:3%;
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
-	        <li><a href="repair.html">Categories</a></li>
-	        <li><a href="contact.html">More</a></li>
 	     </ul>
 	     <div hidden="true" class="search">
 	    	<form>
@@ -182,11 +183,11 @@ margin-right:3%;
 				</ul>
 				
 </div>
-<div align="center" class="">
-Page:
+<div align="center" class="pages">
+<font color="grey">Page:</font>
 <c:set var="pg" scope="session" value="${sessionScope.maxPages }"/>
 <c:forEach var="i" begin="1" end="${pg}">
-   <a href="searchpage?page=<c:out value="${i}"/>"><c:out value="${i}"/></a>
+   <a href="searchpage?page=<c:out value="${i}"/>"><font color="white"><c:out value="${i}"/></font></a>
 </c:forEach>
 
 </div>
@@ -198,8 +199,6 @@ Page:
 			<ul>
 		        <li><a href="index">Home</a></li>
 				<li><a href="showSearch">Search</a></li>
-				<li><a href="">Categories</a></li>
-				<li><a href="">More</a></li>
 		     </ul>
 		</div>
 		<div class="copy">

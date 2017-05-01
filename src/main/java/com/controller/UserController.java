@@ -34,7 +34,7 @@ public class UserController {
 	@RequestMapping(value="/changePass", method=RequestMethod.GET)
 	public String login(Model viewModel,HttpSession session,@RequestParam String newPass) {
 		try {
-			User u = (UserDAO.getUser((String) session.getAttribute("username")));
+			User u = UserDAO.getUser((String) session.getAttribute("username"));
 			UserDAO.changePass(u.getId(),  DigestUtils.md5Hex(newPass).toUpperCase());
 			session.setAttribute("message", "Successfully changed password!");
 		} catch (SQLException e) {

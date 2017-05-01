@@ -126,15 +126,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="f_left">
 		<div class="f_nav">
 			<ul>
-		        <li><a href="">about us</a></li>
-				<li><a href="">site map</a></li>
-				<li><a href="">customer Service</a></li>
-				<li><a href="">search terms</a></li>
-				<li><a href="">contact us</a></li>
+		        <li><a href="index">Home</a></li>
+				<li><a href="showSearch">Search</a></li>
 		     </ul>
 		</div>
 		<div class="copy">
-				<p class="w3-link">Â© All Rights Reserved | Design by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a></p>
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
 			</div>
 		</div>
 	<div class="social-icons">

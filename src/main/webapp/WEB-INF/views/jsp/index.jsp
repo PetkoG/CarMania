@@ -61,8 +61,8 @@
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
-			<li><h3>Select your Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -111,15 +111,8 @@
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
-	        <li><a href="repair.html">Categories</a></li>
-	        <li><a href="contact.html">More</a></li>
 	     </ul>
-	     <div hidden="true" class="search">
-	    	<form>
-	    		<input type="text" value="">
-	    		<input type="submit" value="">
-	    	</form>
-		</div>
+	    
 	<div class="clear"></div>
 	</div>
 </div>
@@ -160,8 +153,6 @@
 			<ul>
 		        <li><a href="index">Home</a></li>
 				<li><a href="showSearch">Search</a></li>
-				<li><a href="">Categories</a></li>
-				<li><a href="">More</a></li>
 		     </ul>	
 		</div>
 		<div class="copy">

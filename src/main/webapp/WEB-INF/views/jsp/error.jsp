@@ -22,18 +22,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="h_right">
 	<div class="drp-dwn">
 		<ul>
-			<li><h3>Select ur Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
-				<option value="">English</option>
-				<option value="">German</option>
-				<option value="">French</option>
-			</select></li>
-			<li><h3 style="margin-left: 10px;">Currency :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+		<li style="visibility:hidden"><h3 style="margin-left: 10px;">Currency :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
 				<option value="">US Dollar-USD</option>
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
+				<option value="">English</option>
+				<option value="">German</option>
+				<option value="">French</option>
+			</select></li>
+			
 		</ul>
 	</div>
 	<div class="header_top_right">
@@ -57,17 +58,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="clear"></div>
 	<div class="h_main">
 		<ul class="nav">
-	        <li class="active"><a href="index.html">Home</a></li>
-	        <li><a href="maintain.html">Maintains</a></li>
-	        <li><a href="repair.html">Repairs</a></li>
-	        <li><a href="contact.html">Contact</a></li>
+	        <li class="active"><a href="index">Home</a></li>
+	        <li><a href="showSearch">Search</a></li>
 	     </ul>
-	     <div class="search">
-	    	<form>
-	    		<input type="text" value="">
-	    		<input type="submit" value="">
-	    	</form>
-		</div>
+	     
 	<div class="clear"></div>
 	</div>
 </div>
@@ -82,15 +76,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="f_left">
 		<div class="f_nav">
 			<ul>
-		        <li><a href="">about us</a></li>
-				<li><a href="">site map</a></li>
-				<li><a href="">customer Service</a></li>
-				<li><a href="">search terms</a></li>
-				<li><a href="">contact us</a></li>
+		        <li><a href="index">Home</a></li>
+				<li><a href="showSearch">Search</a></li>
 		     </ul>
 		</div>
 		<div class="copy">
-				<p class="w3-link">Â© All Rights Reserved | Design by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a></p>
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
 			</div>
 		</div>
 	<div class="social-icons">

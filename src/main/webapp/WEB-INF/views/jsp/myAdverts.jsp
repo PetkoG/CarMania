@@ -93,8 +93,8 @@ margin-right:3%;
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
-			<li><h3>Select your Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -143,8 +143,6 @@ margin-right:3%;
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
-	        <li><a href="repair.html">Categories</a></li>
-	        <li><a href="contact.html">More</a></li>
 	     </ul>
 	     <div hidden="true" class="search">
 	    	<form>
@@ -158,7 +156,7 @@ margin-right:3%;
 <div class="main">
 <div class="main1">
 <div class="boxes">
-		<h2>why us importance of repair</h2>
+		<h2>My Adverts</h2>
 		<div class="repair">
 		     <section>
 				<ul class="lb-album">
@@ -215,8 +213,6 @@ margin-right:3%;
 			<ul>
 		        <li><a href="index">Home</a></li>
 				<li><a href="showSearch">Search</a></li>
-				<li><a href="">Categories</a></li>
-				<li><a href="">More</a></li>
 		     </ul>
 		</div>
 		<div class="copy">
