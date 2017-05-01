@@ -237,9 +237,8 @@ input[type=submit] {
 	<div class="h_main">
 		<ul class="nav">
 	        <li class="active"><a href="index.html">Home</a></li>
-	        <li><a href="maintain.html">Search</a></li>
+	        <li><a href="showSearch">Search</a></li>
 	        <li><a href="repair.html">Categories</a></li>
-	        <li><a href="contact.html">More</a></li>
 	     </ul>
 	     <div hidden="true" class="search">
 	    	<form>

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import com.model.Advert;
 import com.model.Comment;
@@ -127,7 +129,71 @@ public class AdvertDAO {
 			if (ps != null) ps.close();
 			if (rs != null) rs.close();
 		}
+		switch (params.getSortBy()) {
+		case "mark":
+			Collections.sort(adverts, new SortByMark());
+			break;
+		case "price":
+			Collections.sort(adverts, new SortByPrice());
+			break;
+		case "mileage":
+			Collections.sort(adverts, new SortByMileage());
+			break;
+		case "year":
+			Collections.sort(adverts, new SortByYear());
+			break;
+		case "creation":
+			Collections.sort(adverts, new SortByNew());
+			break;
+		default:
+			break;
+		}
 		return adverts;
+	}
+	
+	static class SortByMark implements Comparator<Advert>{
+
+		@Override
+		public int compare(Advert o1, Advert o2) {
+			return o1.getMark().compareTo(o2.getMark());
+		}
+		
+	}
+	
+	static class SortByPrice implements Comparator<Advert>{
+
+		@Override
+		public int compare(Advert o1, Advert o2) {
+			return o1.getPrice() - o2.getPrice();
+		}
+		
+	}
+	
+	static class SortByMileage implements Comparator<Advert>{
+
+		@Override
+		public int compare(Advert o1, Advert o2) {
+			return o1.getMileage() - o2.getMileage();
+		}
+		
+	}
+
+	static class SortByYear implements Comparator<Advert>{
+
+		@Override
+		public int compare(Advert o1, Advert o2) {
+			return o1.getYear() - o2.getYear();
+		}
+		
+	}
+
+	static class SortByNew implements Comparator<Advert>{
+
+		@Override
+		public int compare(Advert o1, Advert o2) {
+			return o1.getCreationTime().compareTo(o2.getCreationTime());
+		}
+		
 	}
 	
 	public static Integer pageCount(SearchParams params) throws SQLException{
