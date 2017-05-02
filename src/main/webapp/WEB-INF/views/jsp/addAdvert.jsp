@@ -197,8 +197,8 @@ function populateModel(){
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
-			<li><h3>Select your Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -247,8 +247,6 @@ function populateModel(){
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
-	        <li><a href="repair.html">Categories</a></li>
-	        <li><a href="contact.html">More</a></li>
 	     </ul>
 	     <div hidden="true" class="search">
 	    	<form>
@@ -263,7 +261,7 @@ function populateModel(){
 <div class="main1">
 				<div class="mainDiv">
 				<form action="addAdvert" method="post" class="form-search" enctype="multipart/form-data">
-				<h1> Choose Your vehicle </h1>
+				<h1> Create Advert </h1>
 				<h2>Title:</h2> <input type="text" name="title" id="title" size="100">
 					<h2>Choose category:</h2> <select id="category" name="category"
 						onchange="populateMark(this.id,'mark');populateBodyType(this.id,'bodyType')">
@@ -412,8 +410,6 @@ function populateModel(){
 			<ul>
 		        <li><a href="index">Home</a></li>
 				<li><a href="showSearch">Search</a></li>
-				<li><a href="">Categories</a></li>
-				<li><a href="">More</a></li>
 		     </ul>
 		</div>
 		<div class="copy">

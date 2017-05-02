@@ -23,13 +23,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="drp-dwn">
 		<ul>
 		<li style="visibility:hidden"><h3 style="margin-left: 10px;">Currency :</h3></li>
+<<<<<<< HEAD
 			<li style="visibility:hidden">	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+=======
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
+>>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
 				<option value="">US Dollar-USD</option>
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
+<<<<<<< HEAD
 			<li><h3>Select ur Language :</h3></li>
 			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+=======
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
+>>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -60,6 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
+<<<<<<< HEAD
 	        <li><a href="">Categories</a></li>
 	        <li><a href="">More</a></li>
 	     </ul>
@@ -69,6 +79,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    		<input type="submit" value="">
 	    	</form>
 		</div>
+=======
+	     </ul>
+	     
+>>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
 	<div class="clear"></div>
 	</div>
 </div>
@@ -83,6 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="f_left">
 		<div class="f_nav">
 			<ul>
+<<<<<<< HEAD
 		        <li><a href="">home</a></li>
 				<li><a href="">search</a></li>
 				<li><a href="">categories</a></li>
@@ -91,6 +106,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="copy">
 				<p class="w3-link">Â© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers</a></p>
+=======
+		        <li><a href="index">Home</a></li>
+				<li><a href="showSearch">Search</a></li>
+		     </ul>
+		</div>
+		<div class="copy">
+				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
+>>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
 			</div>
 		</div>
 	<div class="social-icons">

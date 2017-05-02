@@ -112,8 +112,8 @@ h5 {
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
-			<li><h3>Select your Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
+			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -162,8 +162,6 @@ h5 {
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
-	        <li><a href="repair.html">Categories</a></li>
-	        <li><a href="contact.html">More</a></li>
 	     </ul>
 	     
 	<div class="clear"></div>
@@ -197,7 +195,7 @@ h5 {
 					<h2>${sessionScope.advert.title }</h2>
 					<p>${sessionScope.advert.mark } ${sessionScope.advert.model }</p>					
 					<div class="price">
-						<p>Price: <span>${sessionScope.advert.price }</span></p>
+						<p>Price: <span>${sessionScope.advert.price }</span> BGN</p>
 					</div>
 					<div class="available">
 						<p>Advert Characteristics :</p>
@@ -227,8 +225,8 @@ h5 {
 		<div class="product_desc">	
 			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 				<ul class="resp-tabs-list">
-					<li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">Product Details</li>
-					<li class="resp-tab-item" aria-controls="tab_item-2" role="tab">Product Reviews</li>
+					<li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">Details</li>
+					<li class="resp-tab-item" aria-controls="tab_item-2" role="tab">Comments</li>
 					<div class="clear"></div>
 				</ul>
 				<div class="resp-tabs-container">
@@ -297,8 +295,6 @@ h5 {
 			<ul>
 		        <li><a href="index">Home</a></li>
 				<li><a href="showSearch">Search</a></li>
-				<li><a href="">Categories</a></li>
-				<li><a href="">More</a></li>
 		     </ul>	
 		</div>
 		<div class="copy">

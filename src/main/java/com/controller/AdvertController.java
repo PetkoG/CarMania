@@ -7,6 +7,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 import javax.servlet.annotation.MultipartConfig;
@@ -76,6 +77,7 @@ public class AdvertController {
 		sp.setPage(page);
 		try {
 			ArrayList<Advert> matched = AdvertDAO.getMatchedAdverts(sp);
+			
 			Integer maxPages = AdvertDAO.pageCount(sp);
 			session.setAttribute("searchParams", sp);
 			session.setAttribute("matched", matched);
