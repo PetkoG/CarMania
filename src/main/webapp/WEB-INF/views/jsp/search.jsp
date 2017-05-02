@@ -76,11 +76,11 @@ input[type=submit] {
 	font-family: 'Anaheim', sans-serif;
 }
 .form-search {
-    width:400px;
+    width:700px;
     margin-right:auto; margin-left:auto; border:1px solid #000;
     padding: 10px;
     position: relative;
-
+	display: compact;
 }
 </style>
 <script
@@ -251,31 +251,45 @@ input[type=submit] {
 			<div class="mainDiv">
 				<form action="search" method="get" class="form-search">
 				<h1> Choose Your vehicle </h1>
-					<h2>Choose category:</h2> <select id="category" name="category"
-						onchange="populateMark(this.id,'mark');populateBodyType(this.id,'bodyType')">
-					</select>
-					<hr />
-					<h2>Choose Car mark:</h2> <select id="mark" name="mark"
+				  	<table width="700" cellspacing="200" cellpadding="200" border="1" style="margin: auto;">
+        					<tbody>
+          						<tr>
+          						 	<td>
+          						 		<h2>Choose category:</h2> <select id="category" name="category"
+											onchange="populateMark(this.id,'mark');populateBodyType(this.id,'bodyType')">
+										</select>
+          						 	</td>
+          						 	<td>
+          						 	<h2>Choose Car mark:</h2> <select id="mark" name="mark"
 						onchange="populateModel()">
-
-					</select>&emsp;&emsp;&emsp; <h2>Choose Car model:</h2> <select id="model"
-						name="model"></select>&emsp;&emsp;&emsp; <h2>Choose body type:</h2> <select
-						id="bodyType" name="bodyType"></select>&emsp;&emsp; 
-						<br> <h2>Choose transmission:</h2> <select name="transType">
+								</select>
+          						 	</td>
+          						 			</tr>
+          						 	<tr> <td> <h2>Choose Car model:</h2> <select id="model"
+						name="model"></select> </td>
+          						 			<td> <h2>Choose body type:</h2> <select
+						id="bodyType" name="bodyType"></select> </td> </tr>
+          						 	<tr> 	<td> <h2>Choose transmission:</h2> <select name="transType">
 						<option value=""></option>
 						<option value="manual">Manual</option>
 						<option value="automatic">Automatic</option>
 						<option value="semiautomatic">Semi-Automatic</option>
-					</select>
-					<hr />
-					<h2>Year of manufacture from:</h2> <select name="yearFrom">
+					</select> </td>
+          						 			<td> <h2>Engine type:</h2> <select name="fuelType">
+						<option value=""></option>
+						<option value="petrol">Petrol</option>
+						<option value="diesel">Diesel</option>
+						<option value="electric">Electric</option>
+						<option value="hybrid">Hybrid</option>
+					</select></td> </tr>
+          						 	<tr> 	<td> <h2>Year of manufacture from:</h2> <select name="yearFrom">
 						<option value=""></option>
 						<option value="1980">from 1980</option>
 						<option value="1990">from 1990</option>
 						<option value="2000">from 2000</option>
 						<option value="2010">from 2010</option>
-					</select> 
-					<h2>To</h2>
+					</select> </td>
+          						 			<td><h2>To</h2>
 					<select name="yearTo">
 						<option value=""></option>
 						<option value="1980">to 1980</option>
@@ -283,28 +297,16 @@ input[type=submit] {
 						<option value="2000">to 2000</option>
 						<option value="2010">to 2010</option>
 						<option value="2017">to 2017</option>
-					</select>&emsp;&emsp;&emsp; <h2>Engine type:</h2> <select name="fuelType">
-						<option value=""></option>
-						<option value="petrol">Petrol</option>
-						<option value="diesel">Diesel</option>
-						<option value="electric">Electric</option>
-						<option value="hybrid">Hybrid</option>
-					</select>&emsp;&emsp;&emsp; <h2>Color:</h2> <select name="color">
+					</select> </td> </tr>
+          						 	<tr> 	<td> <h2>Color:</h2> <select name="color">
 						<option value=""></option>
 						<option value="white">white</option>
 						<option value="red">red</option>
 						<option value="blue">blue</option>
 						<option value="black">black</option>
 						<option value="rainbow">rainbow</option>
-					</select>&emsp;&emsp;&emsp;
-
-					<hr />
-					<h2>Price from:</h2> <input type="text"
-						name="priceFrom"> <h2>To</h2> <input type="text" name="priceTo">&emsp;|&emsp;
-					<h2> Horse power from:</h2> <input type="text" name="hpFrom"> <h2>To</h2> <input
-						type="text" name="hpTo">
-					<hr />
-					<h2>Max mileage:</h2> <select name="maxMileage">
+					</select> </td>
+          						 			<td> <h2>Max mileage:</h2> <select name="maxMileage">
 						<option value=""></option>
 						<option value="10000">to 10000</option>
 						<option value="20000">to 20000</option>
@@ -317,13 +319,32 @@ input[type=submit] {
 						<option value="160000">to 160000</option>
 						<option value="180000">to 180000</option>
 						<option value="200000">to 200000</option>
-					</select>&emsp;&emsp;&emsp; <h2>Sort by:</h2> <select name="sortBy">
+					</select> </td>
+          						</tr>
+          						
+          						<tr> 	<td><h2>Price from:</h2> <input type="text"
+						name="priceFrom"> </td>
+          						 			<td> <h2>To</h2> <input type="text" name="priceTo"> </td>
+          						</tr>
+          						
+          						<tr> 	<td> <h2> Horse power from:</h2> <input type="text" name="hpFrom"> </td> 
+          						 			<td><h2>To</h2> <input
+						type="text" name="hpTo"> </td>
+          						</tr>
+          						<tr> 	<td> <h2>Sort by:</h2> <select name="sortBy">
 						<option value="mark">Mark</option>
-						<option value="price">price</option>
-						<option value="mileage">mileage</option>
-						<option value="year">date of manufacture</option>
+						<option value="price">Price</option>
+						<option value="mileage">Mileage</option>
+						<option value="year">Date of Manufacture</option>
 						<option value="creation">Newest adverts</option>
-					</select>&emsp;&emsp;&emsp; <input type="hidden" value="1" name="page">
+					</select></td>
+          						</tr>
+          					</tbody>
+          			</table>
+					
+					
+					 
+					
 					<p align="center">
 					<input type="submit" name="submit" value="Search">
 					</p>

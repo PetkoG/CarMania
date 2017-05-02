@@ -20,6 +20,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="css/easy-responsive-tabs.css" rel="stylesheet" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/global.css">
 <style>
+.details li {
+color: white;
+}
 .form-custom input[type=submit] {
 	background: #585858;
 	background: -moz-linear-gradient(top, #585858 0%, #313131 1%, #2d2d2d 20%, #232323 70%, #1f1f1f 99%);
@@ -80,7 +83,9 @@ h5 {
 	font-size: 1em;
 	font-weight: normal;
 	font-family: 'Anaheim', sans-serif;
-}</style>
+}
+
+</style>
 <script src="js/slides.min.jquery.js"></script>
 <script>
 		$(function(){
@@ -176,7 +181,7 @@ h5 {
 						   <div id="products_example">
 							<div id="products">
 								<div class="slides_container">
-									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
+									<a href="image/${sessionScope.advert.image }" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
 									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" /></a>
 									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
 									<a href="#" target="_blank"><img src="image/${sessionScope.advert.image }" alt=" " /></a>
@@ -193,9 +198,9 @@ h5 {
 				</div>
 				<div class="desc span_3_of_2">
 					<h2>${sessionScope.advert.title }</h2>
-					<p>${sessionScope.advert.mark } ${sessionScope.advert.model }</p>					
+					<p style="color:white">${sessionScope.advert.mark } ${sessionScope.advert.model }</p>					
 					<div class="price">
-						<p>Price: <span>${sessionScope.advert.price }</span> BGN</p>
+						<p style="color:white">Price: <span >${sessionScope.advert.price }</span> BGN</p>
 					</div>
 					<div class="available">
 						<p>Advert Characteristics :</p>

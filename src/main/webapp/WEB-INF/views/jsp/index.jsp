@@ -132,7 +132,7 @@
 	<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="0" end="3"> 
 	<div class="grid_1_of_4 images_1_of_4">
 			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="220"></a>
-			   <a href="advert?id=${advert.id }"><h3>${advert.description }</h3></a>
+			   <a href="advert?id=${advert.id }"><h2 style="color:white">${ advert.mark } </h2><h2 style="color:white">${ advert.model } </h2><h3>${advert.description }</h3></a>
 		</div>
 	</c:forEach>
 		<div class="clear"></div>
@@ -141,7 +141,7 @@
 		<c:forEach var="advert" items="${applicationScope.vipAdverts}" begin="4" end="7"> 
 	<div class="grid_1_of_4 images_1_of_4">
 			  <a href="image/${advert.image }"><img src="image/${advert.image }" height="180" width="220"></a>
-			   <a href="advert?id=${advert.id }"><h3>${advert.description }</h3></a>
+			   <a href="advert?id=${advert.id }"><h2 style="color:white">${ advert.mark } </h2><h2 style="color:white">${ advert.model } </h2><h3>${advert.description }</h3></a>
 		</div>
 	</c:forEach>
 		<div class="clear"></div>

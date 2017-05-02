@@ -1,13 +1,12 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page errorPage="error.jsp"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>The Auto-Tuning Website Template | 404 :: w3layouts</title>
+<title>The Auto-Tuning Website Template |</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
@@ -23,22 +22,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="drp-dwn">
 		<ul>
 		<li style="visibility:hidden"><h3 style="margin-left: 10px;">Currency :</h3></li>
-<<<<<<< HEAD
-			<li style="visibility:hidden">	 	<select onchange="window.location=this.options[this.selectedIndex].value">
-=======
+
 			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
->>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
+
 				<option value="">US Dollar-USD</option>
 				<option value="">Euro-EUR</option>
 				<option value="">Indian Rupee-INR</option>
 			</select></li>
-<<<<<<< HEAD
-			<li><h3>Select ur Language :</h3></li>
-			<li>	 	<select onchange="window.location=this.options[this.selectedIndex].value">
-=======
+
 			<li><h3 style="visibility:hidden">Select your Language :</h3></li>
 			<li>	 	<select style="visibility:hidden" onchange="window.location=this.options[this.selectedIndex].value">
->>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
+
 				<option value="">English</option>
 				<option value="">German</option>
 				<option value="">French</option>
@@ -47,20 +41,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</ul>
 	</div>
 	<div class="header_top_right">
+	<c:if
+				test="${sessionScope.username == null}">
 	   <div class="login">
-			   	   <span><a href="login"><img src="img/login.png" alt="" title="login"></a></span>
+			   	   <span><a href="log"><img src="img/login.png" alt="" title="login"></a></span>
 			   </div>
-			   			    <div class="shopping_cart">
-				    		<div class="cart_img">
-				    	<img src="images/header_cart.png">
+			   <div class="shopping_cart">
+				    		<div class="cart_img" style="visibility: hidden;">
+				    	
 				    	</div>
 						<div class="cart">
-							<a href="#" title="" rel="nofollow">
-													<span class="cart_title"></span>
-										<span class="no_product"></span>
+							<a href="reg" title="Register New User" rel="nofollow">
+									<span class="cart_title">Register<span class="no_product"> (New User)</span></span>
 								</a>
-							</div>
+						</div>
 				     </div>
+			    </c:if>
+			   <c:if
+				test="${sessionScope.username != null}">
+				<div class="login">
+			   	   <span><a href="logout"><img src="img/login.png" alt="" title="logout"></a></span>
+			   </div>
+			    <div class="shopping_cart">
+				    		<div class="cart_img" style="visibility: hidden;">
+				    	
+				    	</div>
+						<div class="cart">
+							<a href="profile" title="View My Profile" rel="nofollow">
+									<span class="cart_title">Profile<span class="no_product">(${sessionScope.username })</span></span>
+								</a>
+						</div>
+				     </div>
+				 </c:if>
 			 <div class="clear"></div>
 		 </div>
 	</div>
@@ -69,20 +81,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<ul class="nav">
 	        <li class="active"><a href="index">Home</a></li>
 	        <li><a href="showSearch">Search</a></li>
-<<<<<<< HEAD
-	        <li><a href="">Categories</a></li>
-	        <li><a href="">More</a></li>
+
 	     </ul>
-	     <div hidden="true" class="search">
-	    	<form>
-	    		<input type="text" value="">
-	    		<input type="submit" value="">
-	    	</form>
-		</div>
-=======
-	     </ul>
-	     
->>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
+
 	<div class="clear"></div>
 	</div>
 </div>
@@ -97,23 +98,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="f_left">
 		<div class="f_nav">
 			<ul>
-<<<<<<< HEAD
-		        <li><a href="">home</a></li>
-				<li><a href="">search</a></li>
-				<li><a href="">categories</a></li>
-				<li><a href="">more</a></li>
-		     </ul>
-		</div>
-		<div class="copy">
-				<p class="w3-link">Â© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers</a></p>
-=======
 		        <li><a href="index">Home</a></li>
 				<li><a href="showSearch">Search</a></li>
 		     </ul>
 		</div>
 		<div class="copy">
 				<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="index"> Car Mania Makers </a></p>
->>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
 			</div>
 		</div>
 	<div class="social-icons">

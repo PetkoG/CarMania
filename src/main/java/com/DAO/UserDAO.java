@@ -91,11 +91,7 @@ public class UserDAO {
 		
 	}
 	public static void changePass(int id,String password) throws SQLException{
-<<<<<<< HEAD
 		String query = "UPDATE carmania.users SET password = ?  WHERE user_id = ? ";
-=======
-		String query = "UPDATE carmania.users SET password = ? WHERE user_id = ?";
->>>>>>> f7cbe5728472fc827b54a04aa823cc2d0c520fd5
 		PreparedStatement ps = DBManager.getInstance().getConnection().prepareStatement(query);
 		ps.setString(1, password);
 		ps.setInt(2, id);

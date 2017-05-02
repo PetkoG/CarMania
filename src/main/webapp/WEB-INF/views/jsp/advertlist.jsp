@@ -173,6 +173,7 @@ margin-right:3%;
 							<img src="image/${advert.image }" height="140" width="180" alt="">
 							<a href="image/${advert.image }" class="lb-close"> </a>
 						</div>
+						<h3 style="color:white">${ advert.mark } </h3><h3 style="color:white">${ advert.model } </h3>
 						<p>${advert.description }</p>
 						<div class="rd_more">
 							<a href="advert?id=${advert.id }" class="button button-rounded">Read More</a>
