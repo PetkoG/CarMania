@@ -39,6 +39,7 @@ public class UserController {
 			session.setAttribute("message", "Successfully changed password!");
 		} catch (SQLException e) {
 			System.out.println("Could not change pass");
+			e.printStackTrace();
 			session.setAttribute("message", "Unsuccessfully changed password!");
 		}
 		return "profile" ;

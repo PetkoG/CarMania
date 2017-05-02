@@ -183,7 +183,7 @@ margin-right:3%;
 				</c:forEach>
 				</li>
 				<li>
-				<c:forEach var="advert" items="${myAdverts}" begin="3" end="8">
+				<c:forEach var="advert" items="${myAdverts}" begin="4" >
 				
 				<br><br><br>
 						<a href="image/${advert.image }">
